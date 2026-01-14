@@ -380,8 +380,16 @@ function SetPlaceholders() {
             for (var i = 0; i < pairs.length; ++i) {
                 const godParentsPair = pairs[i];
 
-                const name1 = ((invertGenders === true) ? godParentsPair.godMotherName : godParentsPair.godFatherName);
-                const name2 = ((invertGenders === true) ? godParentsPair.godFatherName : godParentsPair.godMotherName);
+                // Always show godfather first, then godmother (append godmother last name if available)
+                var gFather = godParentsPair.godFatherName || getSafeValue('godFatherFirstName') || '';
+                var gMother = godParentsPair.godMotherName || getSafeValue('godMotherFirstName') || '';
+                var gMotherLast = getSafeValue('godMotherLastName');
+                if (gMother && gMotherLast) {
+                    gMother = gMother + ' ' + gMotherLast;
+                }
+
+                const name1 = gFather;
+                const name2 = gMother;
 
                 const godParentsElement = getGodParentsElement(name1, name2);
 
@@ -472,13 +480,23 @@ function SetPlaceholders() {
             if (!getSafeValue('civilWeddingDateTime')) {
                 return;
             }
-
-            const momentDate = moment(getSafeValue('civilWeddingDateTime'), "YYYY-MM-DDThh:mm");
-            if (momentDate._isValid === false) {
+            var raw = getSafeValue('civilWeddingDateTime');
+            // Accept common formats: "YYYY-MM-DD HH:mm:ss" or ISO. Parse with moment.
+            var momentDate = moment(raw, ["YYYY-MM-DD HH:mm:ss", "YYYY-MM-DDTHH:mm:ss", "YYYY-MM-DDTHH:mm", moment.ISO_8601], true);
+            if (!momentDate.isValid()) {
+                // If not a parsable date, hide or leave empty
                 return;
             }
-            const civilWeddingDateTime = momentDate.toDate();
 
+            // If time is exactly midnight (00:00 or 00:00:00) treat as 'to be communicated'
+            var hour = momentDate.hour();
+            var minute = momentDate.minute();
+            if (hour === 0 && minute === 0) {
+                element.innerHTML = '<i class="ti-time"></i> Urmează a fi comunicată';
+                return;
+            }
+
+            const civilWeddingDateTime = momentDate.toDate();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             const dateString = new Intl.DateTimeFormat('ro-RO', options).format(civilWeddingDateTime);
             const hours = civilWeddingDateTime.getHours().toString().padStart(2, '0');
@@ -545,16 +563,19 @@ function SetPlaceholders() {
         },
 
         "religious-wedding-date": (element) => {
-            if (!getSafeValue('religiousWeddingDateTime')) {
+            var raw = getSafeValue('religiousWeddingDateTime');
+            if (!raw) return;
+            var momentDate = moment(raw, ["YYYY-MM-DD HH:mm:ss", "YYYY-MM-DDTHH:mm:ss", "YYYY-MM-DDTHH:mm", moment.ISO_8601], true);
+            if (!momentDate.isValid()) return;
+
+            var hour = momentDate.hour();
+            var minute = momentDate.minute();
+            if (hour === 0 && minute === 0) {
+                element.innerHTML = '<i class="ti-time" style="font-size: 0.9rem;"></i> Urmează a fi comunicată';
                 return;
             }
 
-            const momentDate = moment(getSafeValue('religiousWeddingDateTime'), "YYYY-MM-DDThh:mm");
-            if (momentDate._isValid === false) {
-                return;
-            }
             const religiousWeddingDateTime = momentDate.toDate();
-
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             const dateString = new Intl.DateTimeFormat('ro-RO', options).format(religiousWeddingDateTime);
             const hours = religiousWeddingDateTime.getHours().toString().padStart(2, '0');

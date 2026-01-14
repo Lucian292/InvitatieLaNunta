@@ -604,6 +604,81 @@
                 .color-bk {
                     background-color: rgb(249, 247, 247) !important;
                 }
+
+                /* Ensure whenwhere cards are equal height and content is aligned
+                   Apply 3-column desktop layout only on large screens; keep responsive
+                   stacking on smaller devices. */
+                @media (min-width: 992px) {
+                    .whenwhere .owl-theme.row {
+                        display: flex;
+                        gap: 16px; /* smaller gap to avoid wrapping */
+                        align-items: stretch;
+                        flex-wrap: nowrap; /* prefer single row when possible */
+                        justify-content: flex-start !important;
+                        margin-left: -8px; /* compensate item side margins */
+                        margin-right: -8px;
+                    }
+
+                    /* Force three equal columns on desktop using calc to account for gaps */
+                    .whenwhere .item {
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
+                        box-sizing: border-box;
+                        flex: 0 0 calc((100% - 2 * 16px) / 3);
+                        max-width: calc((100% - 2 * 16px) / 3);
+                        margin: 0 8px 16px;
+                    }
+                }
+
+                /* Tablets: two columns */
+                @media (min-width: 768px) and (max-width: 991px) {
+                    .whenwhere .owl-theme.row {
+                        display: flex;
+                        gap: 20px;
+                        align-items: stretch;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                    }
+                    .whenwhere .item {
+                        display: flex;
+                        flex-direction: column;
+                        flex: 0 0 48%;
+                        max-width: 48%;
+                        height: auto;
+                        box-sizing: border-box;
+                    }
+                }
+
+                .whenwhere .whenwhere-img {
+                    flex: 0 0 auto;
+                }
+
+                .whenwhere .whenwhere-img img {
+                    width: 100%;
+                    height: 220px;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                .whenwhere .content {
+                    flex: 1 1 auto;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    padding: 20px;
+                    box-sizing: border-box;
+                }
+
+                .whenwhere .content .location-buttons-container {
+                    margin-top: 12px;
+                }
+
+                @media (max-width: 767px) {
+                    .whenwhere .owl-theme.row { display: block; }
+                    .whenwhere .whenwhere-img img { height: auto; }
+                    .whenwhere .item { flex: 0 0 100%; max-width: 100%; }
+                }
             </style>
             <div class="whenwhere section-padding bg-pink"
                 style="padding-bottom: 10px !important; padding-top: 50px !important;">
