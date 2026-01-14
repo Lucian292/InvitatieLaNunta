@@ -1504,6 +1504,57 @@
     <script>
         window.language = "ro";
     </script>
+    <script>
+        // Ensure whenwhere cards have equal height on wide screens
+        (function () {
+            function equalizeWhenwhereCards() {
+                try {
+                    const container = document.querySelector('.whenwhere');
+                    if (!container) return;
+
+                    const items = Array.from(container.querySelectorAll('.whenwhere .item'));
+                    if (!items || items.length === 0) return;
+
+                    // Reset any previously set heights
+                    items.forEach(it => { it.style.height = ''; });
+
+                    // Only enforce equal heights on desktop widths
+                    if (window.innerWidth < 992) {
+                        return;
+                    }
+
+                    // Compute max height
+                    let maxH = 0;
+                    items.forEach(it => {
+                        const h = it.getBoundingClientRect().height;
+                        if (h > maxH) maxH = h;
+                    });
+
+                    if (maxH > 0) {
+                        items.forEach(it => { it.style.height = Math.ceil(maxH) + 'px'; });
+                    }
+                }
+                catch (e) {
+                    console.error('equalizeWhenwhereCards error', e);
+                }
+            }
+
+            // Debounce resize
+            let resizeTimer = null;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(equalizeWhenwhereCards, 120);
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // Run after slight delay so images have loaded
+                setTimeout(equalizeWhenwhereCards, 150);
+            });
+
+            // Also run on load to handle cached images
+            window.addEventListener('load', function () { setTimeout(equalizeWhenwhereCards, 100); });
+        })();
+    </script>
 </body>
 
 </html>
