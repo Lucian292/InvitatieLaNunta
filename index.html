@@ -1,0 +1,1434 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta property="og:title" content="Invitație Online — vainvit.ro">
+    <meta property="og:description" content="Încă puțin până la ziua cea mare!">
+    <meta property="og:image" content="./static/thumbs/default/27.png">
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="256" />
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ro_RO">
+
+    <link rel="icon" href="./static/favicon/favicon.ico">
+
+    <title id="invitation-title">Invitație Online - vainvit.ro</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arizonia:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./static/defaultV2.min.css" type="text/css" rel="stylesheet">
+    <link href="./static/modern.min.css" type="text/css" rel="stylesheet">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/survey-jquery/1.12.6/survey.jquery.min.js"
+        integrity="sha512-gABharYVy2Hx282BKgs+Vb7YESGPBUh0LsagtP0hCFgbfAC6MlcN+N3jU/1CtCHNpqM4li/0Sx+/W1hquuVH4Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="./static/invites/VI_EventParamsDefault.js"></script>
+    <script src="static/EventParams.js"></script>
+    <script src="./static/invites/VI_ConfirmationFormModel.js"></script>
+    <script src="static/VI_StaticMain.js"></script>
+
+    <link rel="stylesheet" href="static/animate.css">
+    <link rel="stylesheet" href="static/themify-icons.css">
+    <link rel="stylesheet" href="static/bootstrap.css">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/main.css">
+
+    <meta name="robots" content="noindex">
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        .button-confirm {
+            border: none;
+            border-radius: 5px;
+
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 11px;
+            padding-bottom: 10px;
+
+
+            font-family: nunito sans, sans-serif;
+            font-feature-settings: normal;
+            font-kerning: auto;
+            font-optical-sizing: auto;
+            font-size: 15px;
+            font-weight: 600 !important;
+            text-transform: uppercase;
+            margin-top: 0px;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            color: white !important;
+
+            background-color: rgb(189, 148, 90);
+            border-color: white !important;
+            border-radius: 3px !important;
+            animation: bounce 2s ease infinite;
+            cursor: pointer;
+        }
+
+        .button-confirm:hover{
+          background-color: rgb(169, 134, 86);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-0.5rem);
+            }
+
+            60% {
+                transform: translateY(-0.2rem);
+            }
+        }
+
+        .dialog-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dialog-box {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            max-height: 85vh;
+            padding: 3px;
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+            background: #fff;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .dialog-box-inside {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            max-height: 80vh;
+            padding-top: 10px;
+            background: #fff;
+            text-align: center;
+            overflow-y: auto;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 28px;
+            color: #333;
+            cursor: pointer;
+            z-index: 9999 !important;
+        }
+
+        @media (max-width: 600px) {
+            .dialog-box {
+                width: 90%;
+            }
+
+            #cadou {
+                font-size: 33px !important;
+                line-height: 34px !important;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h5 {
+                font-size: 1.035rem !important;
+            }
+        }
+
+        @media (max-width: 345px) {
+
+            #event-date-id-header {
+                font-size: 1.2rem !important;
+            }
+
+            #event-name {
+                font-size: 1.2rem !important;
+            }
+
+            #bride-firstname,
+            #groom-firstname {
+                font-size: 60px !important;
+                line-height: 62px !important;
+            }
+
+            #vi-cd-message {
+                font-size: 2.5rem !important;
+            }
+
+            .parents-container,
+            .godparents-container {
+                font-size: 2rem !important;
+                line-height: 2.1rem !important;
+            }
+
+            #godparents-pairs p {
+                font-size: 2rem !important;
+                line-height: 2.1rem !important;
+            }
+
+            .msg {
+                font-size: 14px !important;
+                line-height: 22px !important;
+            }
+        }
+
+        .dialog-box-inside::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media screen and (min-width:992px) {
+            #rsvp {
+                background-image: url('static/112-desk.jpeg') !important;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+
+            #whenwhere {
+                padding-top: 15px !important;
+                padding-bottom: 30px !important;
+            }
+
+            #confirmare-label {
+                font-size: 2.7rem !important;
+            }
+
+            #prima-zi {
+                margin-top: 35px !important;
+            }
+
+            #story {
+                padding-bottom: 20px !important;
+            }
+
+            #couple {
+                padding-bottom: 40px !important;
+                padding-top: 40px !important;
+            }
+
+            .footer2 {
+                padding-top: 30px !important;
+                padding-bottom: 30px !important;
+            }
+
+            #container-names {
+                display: grid !important;
+            }
+
+            #and-h {
+                font-size: 27px !important;
+            }
+
+            #event-date-id-header {
+                font-size: 1.1rem;
+            }
+
+            #event-name {
+                font-size: 1.1rem;
+            }
+
+            @font-face {
+                font-family: 'mono';
+                src: url('./static/fonts/mmm.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'xxx';
+                src: url('./static/fonts/xxx.otf') format('opentype');
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'WhisperingSignature';
+                src: url('./static/fonts/WhisperingSignature.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+                font-display: swap;
+            }
+
+
+            #bride-firstname,
+            #groom-firstname {
+                font-size: 68px;
+                line-height: 70px;
+            }
+
+            #baby-name {
+                font-size: 45px !important;
+                line-height: 45px !important;
+            }
+
+            #toghether {
+                font-size: 25px !important;
+            }
+
+            #home {
+                background-image: url('static/117.jpeg') !important;
+            }
+
+            #c1,
+            #c2,
+            #c3,
+            #c4 {
+                font-size: 25px !important;
+                padding: 0px !important;
+            }
+
+            .days-var,
+            .sec-var,
+            .hours-var,
+            .min-var {
+                min-width: 60px !important;
+                max-width: 60px !important;
+                text-align: center;
+            }
+
+            #countdown li {
+                padding: 2px !important;
+            }
+
+            .n0 {
+                font-size: 16pt !important;
+            }
+
+            #vi-cd {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .br-class {
+                display: block !important;
+            }
+
+        }
+
+        #c1,
+        #c2,
+        #c3,
+        #c4,
+        #countdown-wrapper {
+            font-size: 35px;
+            text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.678), 1px 1px 1px rgba(0, 0, 0, .5);
+        }
+
+
+        #godparents-pairs span {
+            font-family: 'Arizonia', cursive !important;
+            color: #bd945a;
+            opacity: 1 !important;
+            font-style: italic;
+            font-weight: 500 !important;
+            font-size: 1.1rem !important;
+            margin: 8px !important;
+            font-family: 'Arizonia';
+        }
+
+        .and {
+            color: #bd945a;
+            font-style: italic;
+            font-weight: 500 !important;
+            font-size: 1.1rem !important;
+            margin-bottom: -2px !important;
+            font-family: 'Arizonia';
+        }
+
+        .bride-firstname-groom-firstname {
+            margin: 0px;
+            font-family: 'Arizonia', cursive !important;
+            font-size: 108px;
+            line-height: 110px;
+            text-shadow: -1px -1px 1px rgba(165, 159, 159, 0.221), 1px 1px 1px rgba(0, 0, 0, 0.586) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="oliven-page">
+        <div id="oliven-main">
+            <div style="background-color: #161616;">
+                <header id="home" class="header valign bg-img parallaxie"
+                    style="background-image: url(static/117-desk.jpeg); opacity: 0.8;  background-position: 80% 100%;">
+                    <div class="overlay" style="background-color: #76704b15;"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center caption" style="margin-top: -150px !important;">
+                                <div id="container-names" style="display:  inline-block;">
+                                    <h1 class="animate-box fadeInUp animated bride-firstname-groom-firstname"
+                                        data-animate-effect="fadeInUp" id="bride-firstname">
+                                        Mireasă...
+                                    </h1>
+                                    <h1 class="animate-box fadeInUp animated" data-animate-effect="fadeInUp" id="and-h"
+                                        style="font-size: 25px; margin: 10px !important; text-shadow: -1px -1px 1px rgba(165, 159, 159, 0.221), 1px 1px 1px rgba(0, 0, 0, 0.586); font-family: 'Arizonia'; ">
+                                        &
+                                    </h1>
+                                    <h1 class="animate-box fadeInUp animated bride-firstname-groom-firstname"
+                                        data-animate-effect="fadeInUp" id="groom-firstname">
+                                        Mire...
+                                    </h1>
+                                </div>
+                                <br>
+                                <h5 id="event-name" class="animate-box fadeInUp animated" data-animate-effect="fadeInUp"
+                                    style="margin-top: 15px; font-size: 1.3rem; font-weight: 500 !important; text-shadow: -1px -1px 1px rgba(165, 159, 159, 0.221), 1px 1px 1px rgba(0, 0, 0, 0.586);">
+                                </h5>
+                                <h5 id="event-date-id-header" class="animate-box fadeInUp animated"
+                                    data-animate-effect="fadeInUp"
+                                    style="margin-top: 10px !important; font-weight: 500 !important; font-size: 1.2rem; text-shadow: -1px -1px 1px rgba(165, 159, 159, 0.221), 1px 1px 1px rgba(0, 0, 0, 0.586);">
+                                </h5>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: -200px !important;">
+                            <div class="col-md-12">
+                                <div class="arrow bounce text-center">
+                                    <a href="index.html#sarbatorit">
+                                        <i class="ti-heart"
+                                            style="text-shadow: -1px -1px 1px rgba(165, 159, 159, 0.221), 1px 1px 1px rgba(0, 0, 0, 0.586) !important;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </header>
+            </div>
+            <style>
+                .parents-class {
+                    font-size: 24px;
+                    line-height: 24px;
+                }
+
+                .parents-container,
+                .godparents-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                    text-align: center;
+                    color: rgb(96, 96, 96);
+                    text-transform: none;
+                    font-family: 'Arizonia', cursive !important;
+                    font-size: 2.4rem;
+                    line-height: 2.5rem;
+                    letter-spacing: 0px !important;
+
+                    justify-content: center;
+                    align-items: center;
+                    color: #bd945a;
+                }
+
+                #godparents-pairs p {
+                    color: rgb(96, 96, 96);
+                    font-family: 'Arizonia', cursive !important;
+                    text-transform: none;
+                    font-size: 2.4rem;
+                    line-height: 2.5rem;
+                    letter-spacing: 0px !important;
+                    color: #bd945a;
+                }
+
+                .msg {
+                    text-align: center;
+                    letter-spacing: 0;
+                    font-family: nunito sans, sans-serif;
+                    font-family: "Sorts Mill Goudy", serif;
+                    font-weight: 500;
+                    font-style: italic !important;
+                    font-size: 1.154rem;
+                    letter-spacing: 0rem;
+                    line-height: 30px;
+                    margin-top: 20px;
+                    margin-bottom: 0px;
+                    color: rgb(47, 47, 47);
+                }
+            </style>
+            <div class="story section-padding" style="padding-bottom: 15px !important;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5 mb-30">
+                            <div class="story-img animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
+                                <div class="img"><img src="static/2222.jpg" class="img-fluid"></div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: center;flex-direction: column; text-align: center;"
+                            class="col-md-7 animate-box fadeInRight animated" data-animate-effect="fadeInRight">
+                            <p id="prima-zi" style="margin-top: 0px;" class="msg">
+                                Prima zi a vieții noastre ca soț și soție va fi mai
+                                specială alături de voi, cei dragi, și vă invităm să
+                                ne fiți alături când ne vom spune cel mai frumos „DA“!
+                            </p>
+                            <div id="all-parents">
+                                <div id="parents-container-id" style="margin-bottom: 20px;">
+                                    <p class="msg" style="margin-bottom: 5px;">Împreună cu cei care ne-au văzut <br
+                                            class="br-class" style="display: none;">primii paşi, părinții:
+                                    </p>
+                                    <div class="parents-container">
+                                        <span id="bride-parents-family"></span>
+                                        <div class="and" id="and-parents">&</div>
+                                        <span id="groom-parents-family"></span>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 1rem;" id="godparents-section">
+                                    <p class="msg" id="nasi-text" style="margin-bottom: 0px; margin-top: 20px;">Şi cu
+                                        cei care ne vor sta alături <br class="br-class" style="display: none;"> de acum
+                                        înainte, naşii:
+                                    </p>
+                                    <div id="godparents-pairs" class="godparents-container">
+                                        <span id="godmother-name"></span>
+                                        și
+                                        <span id="godfather-name"></span>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="countdown" class="section-padding bg-img bg-fixed-large"
+                style="background-image: url(static/1.jpg); opacity: 1 !important; padding-bottom: 30px !important; background-position: center center;">
+                <div id="vi-cd" class="container">
+                    <div class="row">
+                        <div class="section-head col-md-12" style="margin: 0; padding: 0;">
+                            <h4 id="vi-cd-message" style="font-family: 'Arizonia', cursive !important; font-size: 3.4rem; margin-bottom: 20px;
+                                text-shadow: -1px -0px 0px rgba(44, 41, 41, 0.1), 1px 1px 1px rgba(0,0,0,.5);">
+                                Au mai rămas:</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul id="countdown-wrapper" data-date="2024-09-11T11:36:36Z"
+                                style="text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5) !important; color: white;">
+                                <li><span class="n0 days-var" id="c1"
+                                        style="text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5) !important; color: white;">0</span>Zile
+                                </li>
+                                <li><span class="n0 hours-var" id="c2"
+                                        style="text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5) !important; color: white;">0</span>Ore
+                                </li>
+                                <li><span class="n0 min-var" id="c3"
+                                        style="text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5) !important; color: white;">0</span>Minute
+                                </li>
+                                <li><span class="n0 sec-var" id="c4"
+                                        style="text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5) !important; color: white;">0</span>Secunde
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+            </div>
+            <script src="./static/invites/VI_Countdown.js"></script>
+            <script>
+                SetCountDownValues();
+            </script>
+            <style>
+                .location-link-button {
+                    width: 170px;
+                    background-color: #fffbf6ac;
+                    color: #3c3c3c;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    font-family: "nunito sans", serif !important;
+                    border: 1px solid #bd945a;
+                    border-radius: 2px;
+                    padding: 2px 8px;
+                    padding-top: 3px !important;
+                    display: inline-flex;
+                    text-transform: none !important;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.3s ease-in-out;
+                    letter-spacing: 0px;
+                }
+
+                .location-link-button:hover {
+                    background-color: #bd945a;
+                    color: #ffffff;
+                    border: 1px solid #bd945a;
+                }
+
+                .location-buttons-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    gap: 8px;
+                    margin-bottom: 15px;
+                    display: none;
+                    margin-top: 15px;
+                }
+
+                .color-bk {
+                    background-color: rgb(249, 247, 247) !important;
+                }
+            </style>
+            <div class="whenwhere section-padding bg-pink"
+                style="padding-bottom: 10px !important; padding-top: 50px !important;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 mb-30">
+                            <h2 class="oliven-title"
+                                style="text-align: center; color: rgb(96, 96, 96); font-size: 1.6rem !important;">Unde
+                                și când?</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="owl-theme row" style="justify-content: center !important;">
+                                <div id="civil-wedding" class="item col-lg-6" style="margin-bottom: 20px">
+                                    <div class="whenwhere-img"><img src="static/civ.jpg" alt="">
+                                    </div>
+                                    <div class="content color-bk">
+                                        <h5 style="letter-spacing: 1px;">Cununia Civilă</h5>
+                                        <p>
+                                            <span id="civil-wedding-location-name"
+                                                style="color:#3c3c3c !important; line-break: after-white-space; font-size: 1.05rem !important;">
+                                                <i class="ti-pin"></i> Nume Locație ...
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span id="civil-wedding-location-address"
+                                                style="color:#3c3c3c !important; line-break: after-white-space; font-size: 1.05rem !important;">
+                                                <i class="ti-location-pin"></i> Adresa ...
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span id="civil-wedding-date"
+                                                style="color:#3c3c3c !important; line-break: after-white-space; font-size: 1rem !important;">
+                                                <i class="ti-time"></i> Data și ora ...
+                                            </span>
+                                        </p>
+                                        <div class="location-buttons-container">
+                                            <button id="civil-waze-button" class="location-link-button">
+                                                <i class="fa-brands fa-waze"></i> &nbsp;Direcții
+                                                Waze
+                                            </button>
+                                            <button id="civil-googlemaps-button" class="location-link-button">
+                                                <i class="fas fa-map-marker-alt"></i> &nbsp;
+                                                Vezi pe hartă
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="religious-wedding" class="item col-lg-6" style="margin-bottom: 20px; ">
+                                    <div class="whenwhere-img"><img src="static/reli.jpeg" alt="">
+                                    </div>
+                                    <div class="content color-bk">
+                                        <h5 style="letter-spacing: 1px;">Ceremonia Religioasă</h5>
+                                        <p>
+                                            <span id="religious-wedding-location-name"
+                                                style="color:#3c3c3c !important; line-break: after-white-space; font-size:  1.05rem !important;">
+                                                <i class="ti-pin"></i> Nume Locație ...
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span id="religious-wedding-location-address"
+                                                style="color:#3c3c3c !important; line-break: after-white-space; font-size: 1.05rem !important;">
+                                                <i class="ti-location-pin"></i> Adresa ...
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span id="religious-wedding-date"
+                                                style="color:#3c3c3c !important; line-break: after-white-space; font-size: 1rem !important;">
+                                                <i class="ti-time"></i> Data și ora ...
+                                            </span>
+                                        </p>
+                                        <div class="location-buttons-container">
+                                            <button id="religious-waze-button" class="location-link-button">
+                                                <i class="fa-brands fa-waze"></i> &nbsp;Direcții
+                                                Waze
+                                            </button>
+
+                                            <button id="religious-googlemaps-button" class="location-link-button">
+                                                <i class="fas fa-map-marker-alt"></i> &nbsp;
+                                                Vezi pe hartă
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="wedding-party" class="item col-lg-6" style="margin-bottom: 20px">
+                                    <div class="whenwhere-img"><img src="static/party.jpeg" alt=""
+                                            style="opacity: 0.88;"></div>
+                                    <div class="content color-bk">
+                                        <h5 style="letter-spacing: 1px;">Petrecerea</h5>
+                                        <p>
+                                            <span id="wedding-party-location-name"
+                                                style="color:#3c3c3c !important; line-break: after-white-space; font-size:  1.05rem!important;">
+                                                <i class="ti-pin"></i> Nume Locație ...
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span id="wedding-party-location-address"
+                                                style="color:#3c3c3c !important; line-break: after-white-space; font-size: 1.05rem !important;">
+                                                <i class="ti-location-pin"></i> Adresa ...
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span id="wedding-party-date"
+                                                style="color:#3c3c3c !important; line-break: after-white-space; font-size: 1rem !important;">
+                                                <i class="ti-time"></i> Data și ora ...
+                                            </span>
+                                        </p>
+
+                                        <div class="location-buttons-container">
+                                            <button id="party-waze-button" class="location-link-button">
+                                                <i class="fa-brands fa-waze"></i> &nbsp;Direcții
+                                                Waze
+                                            </button>
+
+                                            <button id="party-googlemaps-button" class="location-link-button">
+                                                <i class="fas fa-map-marker-alt"></i> &nbsp;
+                                                Vezi pe hartă
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="rsvp" class="section-padding bg-img bg-fixed-large"
+                style="padding-top: 80px !important; background-image: url(static/112.jpeg); opacity: 1 !important; padding-bottom: 30px !important; background-position: center center;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3 bg-white p-40">
+                            <span class="oliven-title-meta text-center" id="cadou"
+                                style=" font-family: 'Arizonia', cursive !important; font-size: 2.5rem; line-height: 2.4rem; margin-bottom: 18px;">
+                                Cel mai frumos cadou
+                            </span>
+                            <h2 class="oliven-subtitle-small text-center" style="color:#3c3c3c !important;">Este
+                                prezența voastră.
+                                <br>
+                                Abia așteptăm să vă vedem!
+                                <style>
+                                    #phone-numbers-container {
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        flex-direction: column;
+                                        margin-bottom: 15px;
+                                    }
+
+                                    .phone-line,
+                                    .rugam {
+                                        display: flex;
+                                        flex-direction: row;
+                                        gap: 0px;
+                                        align-items: center;
+                                        justify-content: center;
+                                        font-style: normal;
+                                        color: rgb(0, 0, 0);
+                                        letter-spacing: -0.02rem;
+                                        margin-bottom: 0px !important;
+                                        color: #3c3c3c !important;
+                                        font-weight: 700 !important;
+                                        white-space: nowrap;
+                                        font-family: nunito sans, sans-serif;
+                                        font-size: 15px;
+                                        font-weight: 400;
+                                        line-height: 1.75em;
+                                    }
+
+                                    .rugam {
+                                        gap: 0px;
+                                        align-items: center;
+                                        justify-content: center;
+                                        font-style: normal;
+                                        color: rgb(0, 0, 0);
+                                        letter-spacing: -0.02rem;
+                                        margin-bottom: 0px !important;
+                                        color: #3c3c3c !important;
+                                        white-space: nowrap;
+                                        font-family: nunito sans, sans-serif;
+                                        font-size: 15px;
+                                        line-height: 1.75em;
+                                        font-weight: 400 !important;
+                                        margin-top: 10px;
+                                        display: inline-block;
+                                        text-decoration: none;
+                                        color: inherit;
+                                    }
+
+                                    .phone-line p,
+                                    .phone-line a {
+                                        color: #3c3c3c !important;
+                                        font-weight: 700 !important;
+                                        white-space: nowrap;
+                                        margin-bottom: 0px;
+                                    }
+
+                                    .la-numere {
+                                        color: #3c3c3c !important;
+                                        font-size: 15px;
+                                        font-weight: 400;
+                                        line-height: 18px;
+                                        margin-bottom: 0px;
+                                    }
+
+                                    .confirm-until-text-c {
+                                        margin-bottom: 10px;
+                                        margin-top: 40px;
+                                    }
+                                </style>
+                                <div id="confirm-until-text">
+                                    <div
+                                        style="color:#3c3c3c !important;font-style: normal; margin-top: 10px; margin-bottom: 10px;">
+                                        <span style="padding-right: 10px;  padding-left: 10px;">
+                                            Vă rugăm să confirmați prezența până la data de <span id="confirm-until"
+                                                style="color:#3c3c3c !important;
+                                            font-weight: 700 !important;
+                                             white-space: nowrap;">
+                                            </span>
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div id="phone-numbers-container">
+                                    <span class="la-numere">
+                                        <span id="numbers-msg">La </span>
+                                        <span id="numerele-id">numerele</span>
+                                        de telefon:
+                                    </span>
+                                </div>
+                                <div id="formular-msg" style="display: none; margin-top: 5px; margin-bottom: 20px;">
+                                    <span class="la-numere">
+                                        sau prin formularul de mai jos
+                                    </span>
+                                </div>
+                            </h2>
+                            <script>
+                                function openDialog() {
+                                    document.getElementById("dialogOverlay").style.display = "flex";
+                                }
+
+                                function closeDialog() {
+                                    document.getElementById("dialogOverlay").style.display = "none";
+                                }
+
+                            </script>
+                            <div id="button-confirm-id-container"
+                                style="margin-bottom: 0px; margin-top: 10px !important; text-align: center; display: flex; justify-content: center;">
+                                <button class="button-confirm" onclick="openDialog()">Confirmă
+                                    prezența</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+            </div>
+
+            <div id="dialogOverlay" class="dialog-overlay" style="z-index: 199999 !important;">
+                <div class="dialog-box">
+                    <span class="close-button" onclick="closeDialog()">×</span>
+                    <div class="dialog-box-inside">
+                        <div style="padding: 28px;">
+                            <div style="display: flex; align-items: center; justify-content: center;">
+                                <span id="confirmare-label"
+                                    style="padding: 10px; color:#c7a758 !important;  font-family: 'Arizonia', cursive !important;;text-transform: none; font-size: 3.5rem; font-style: normal;">Confirmare
+                                </span>
+                            </div>
+                            <div id="vi-confirmation-form">
+                            </div>
+
+                            <script>
+                                CustomizeConfirmationFormModel();
+                                const survey = new Survey.Model(VI_ConfirmationFormModel);
+
+                                // Ensure dynamic panels reflect dropdown values (fix for paneldynamic not updating reliably)
+                                function applyDynamicPanelCounts(s) {
+                                    try {
+                                        const adultPanel = s.getQuestionByName('adultNames');
+                                        const childrenPanel = s.getQuestionByName('childrenNames');
+
+                                        function updatePanels() {
+                                            const a = Number(s.getValue('adultCount')) || 0;
+                                            const c = Number(s.getValue('childrenCount')) || 0;
+                                            if (adultPanel) adultPanel.panelCount = a;
+                                            if (childrenPanel) childrenPanel.panelCount = c;
+                                        }
+
+                                        s.onValueChanged.add((sender, options) => {
+                                            if (options.name === 'adultCount' || options.name === 'childrenCount') {
+                                                updatePanels();
+                                            }
+                                        });
+
+                                        // set initial counts
+                                        updatePanels();
+                                    }
+                                    catch (err) {
+                                        console.error(err);
+                                    }
+                                }
+
+                                applyDynamicPanelCounts(survey);
+
+                                // Hide dialog close-button while interacting with dropdowns/selects
+                                (function () {
+                                    try {
+                                        const dlgClose = document.querySelector('.close-button');
+                                        const formEl = document.getElementById('vi-confirmation-form');
+                                        if (!dlgClose || !formEl) return;
+
+                                        function hideClose() { dlgClose.style.display = 'none'; }
+                                        function showClose() { dlgClose.style.display = ''; }
+
+                                        formEl.addEventListener('focusin', function (e) {
+                                            if (e.target && (e.target.tagName === 'SELECT' || e.target.closest('.sv_q_dropdown_control'))) {
+                                                hideClose();
+                                            }
+                                        });
+
+                                        formEl.addEventListener('mousedown', function (e) {
+                                            if (e.target && (e.target.tagName === 'SELECT' || e.target.closest('.sv_q_dropdown_control'))) {
+                                                hideClose();
+                                            }
+                                        });
+
+                                        formEl.addEventListener('focusout', function (e) {
+                                            setTimeout(function () {
+                                                const active = document.activeElement;
+                                                if (!formEl.contains(active) || active.tagName !== 'SELECT') showClose();
+                                            }, 80);
+                                        });
+
+                                        document.addEventListener('click', function (e) {
+                                            if (!formEl.contains(e.target)) showClose();
+                                        });
+                                    }
+                                    catch (err) { console.error(err); }
+                                })();
+
+                                var registrationDone = false;
+
+                                survey.onCompleting.add(function (sender, options) {
+                                    // nu mai blocăm completarea
+                                    options.allow = true;
+
+                                    // doar log local (sau salvezi în localStorage)
+                                    console.log("RSVP local:", sender.data);
+                                    localStorage.setItem("rsvp_last", JSON.stringify(sender.data));
+
+                                    alert("Confirmare salvată local (nu se trimite pe server).");
+                                });
+
+                                $(function () {
+                                    $("#vi-confirmation-form").Survey({ model: survey });
+                                });
+
+                                // (Removed aggressive JS fallback that hid nodes — keeping DOM intact)
+
+                                function onloadRecaptchaCallback() {
+                                    VI_GoogleRecaptchaJsLoaded = true;
+                                }
+                            </script>
+
+                            <script
+                                src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit"
+                                async defer></script>
+                            <style>
+                                #vi-confirmation-form {
+                                    padding-left: 0em;
+                                    padding-right: 0em;
+                                    font-family: 'nunito sans', sans-serif !important;
+                                    box-sizing: border-box;
+                                    margin: 0;
+                                    display: block;
+                                    z-index: 10000;
+                                    letter-spacing: 0 !important;
+                                }
+
+                                /* Ensure dropdown selected value is visible across browsers/devices */
+                                #vi-confirmation-form select,
+                                #vi-confirmation-form .sv_q_dropdown_control select,
+                                #vi-confirmation-form .sv_select_control,
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-select {
+                                    color: #222 !important;
+                                    opacity: 1 !important;
+                                    -webkit-text-fill-color: #222 !important;
+                                    -webkit-appearance: none !important;
+                                    /* increase control height and vertical centering to avoid clipping */
+                                    height: 56px !important;
+                                    min-height: 52px !important;
+                                    line-height: 1.6 !important;
+                                    padding-top: 10px !important;
+                                    padding-bottom: 10px !important;
+                                    padding-left: 10px !important;
+                                    box-sizing: border-box !important;
+                                    font-size: 16px !important;
+                                }
+
+                                /* Ensure the SurveyJS select wrapper vertically centers content */
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-select {
+                                    display: flex !important;
+                                    align-items: center !important;
+                                    height: 44px !important;
+                                    min-height: 40px !important;
+                                    padding-top: 0 !important;
+                                    padding-bottom: 0 !important;
+                                    box-sizing: border-box !important;
+                                    background-image: none !important;
+                                }
+
+                                /* Increase inner spacing so placeholder/selected text isn't clipped */
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-select span,
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-select .sv-string-viewer,
+                                #vi-confirmation-form select,
+                                #vi-confirmation-form .sv_q_dropdown_control select {
+                                    color: #222 !important;
+                                    opacity: 1 !important;
+                                    -webkit-text-fill-color: #222 !important;
+                                    font-size: 15px !important;
+                                    line-height: 1.4 !important;
+                                    padding-top: 6px !important;
+                                    padding-bottom: 6px !important;
+                                    background-image: none !important;
+                                    text-shadow: none !important;
+                                }
+
+                                /* Ensure the visible text is vertically centered inside the control */
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-select span {
+                                    display: inline-block !important;
+                                    vertical-align: middle !important;
+                                }
+
+                                /* Remove clear/eraser and placeholder overlays that may hide the value.
+                                   Add broad selectors to cover different SurveyJS versions */
+                                /* Hide specific clear/clean buttons but avoid broad selectors */
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-clear-btn,
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-clear-button,
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-clear,
+                                #vi-confirmation-form .sd-dropdown_clean-button,
+                                #vi-confirmation-form .sd-dropdown_clean-button-svg {
+                                    display: none !important;
+                                    opacity: 0 !important;
+                                    visibility: hidden !important;
+                                    width: 0 !important;
+                                    height: 0 !important;
+                                }
+
+                                /* Ensure any SVG/icon inside the select wrapper doesn't overlay the value */
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-select svg,
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-select i {
+                                    display: none !important;
+                                }
+
+                                /* Also hide any pseudo-elements that could overlay the value */
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-select::after,
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-select::before,
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-string-viewer::before,
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-string-viewer::after {
+                                    display: none !important;
+                                    content: none !important;
+                                }
+
+                                /* Native select fallbacks */
+                                #vi-confirmation-form select::-ms-expand { display: none !important; }
+                                #vi-confirmation-form select { background-image: none !important; }
+
+                                /* Removed broad-hide rules to avoid hiding legitimate form elements */
+
+                                /* Force the string viewer to vertically center and be tall enough */
+                                #vi-confirmation-form .sv-string-viewer,
+                                #vi-confirmation-form .sd-dropdown__value,
+                                #vi-confirmation-form .sd-dropdown__placeholder,
+                                #vi-confirmation-form .sd-dropdown__hint-suffix,
+                                #vi-confirmation-form .sd-dropdown__hint-prefix {
+                                    line-height: 44px !important;
+                                    min-height: 40px !important;
+                                    height: 44px !important;
+                                    padding-top: 0 !important;
+                                    padding-bottom: 0 !important;
+                                    box-sizing: border-box !important;
+                                    color: #222 !important;
+                                }
+
+                                /* Make placeholder text fully visible and vertically centered */
+                                #vi-confirmation-form .sd-dropdown__placeholder,
+                                #vi-confirmation-form .sv-string-viewer::before {
+                                    line-height: 44px !important;
+                                    transform: none !important;
+                                }
+
+                                /* Force value visibility in all states */
+                                #vi-confirmation-form .sv-string-viewer,
+                                #vi-confirmation-form .sv-string-viewer span,
+                                #vi-confirmation-form .sd-dropdown__value,
+                                #vi-confirmation-form .sd-dropdown__value span,
+                                #vi-confirmation-form select {
+                                    color: #222 !important;
+                                    opacity: 1 !important;
+                                    -webkit-text-fill-color: #222 !important;
+                                }
+
+                                /* If SurveyJS uses an empty placeholder element, keep it visible and not clipped */
+                                #vi-confirmation-form .sd-dropdown__placeholder {
+                                    color: rgba(0,0,0,0.4) !important;
+                                }
+
+                                /* Make sure placeholder icon doesn't overlay the value */
+                                #vi-confirmation-form .sv_q_dropdown_control .sv-choose-none {
+                                    display: none !important;
+                                }
+
+                                #vi-confirmation-form span {
+                                    font-family: 'nunito sans', sans-serif !important;
+                                    letter-spacing: 0 !important;
+                                }
+
+                                #vi-confirmation-form input {
+                                    padding: 20px;
+                                    border: none;
+                                    border-bottom: 1px solid rgba(128, 128, 128, 0.365) !important;
+                                    border-radius: 0px !important;
+                                }
+
+                                .sd-title {
+                                    font-family: 'nunito sans', sans-serif !important;
+                                    font-size: 15px !important;
+                                }
+
+                                .sd-body.sd-body--static {
+                                    padding-bottom: 10px !important;
+                                }
+
+                                .sd-input {
+                                    --sd-mobile-width: 600px;
+                                    white-space: nowrap;
+                                    margin: 0;
+                                    position: static;
+                                    text-align: start;
+                                    font-family: 'nunito sans', sans-serif !important;
+                                    font-size: 15px !important;
+                                    border: none;
+                                    border-bottom: 1px solid rgba(128, 128, 128, 0.365) !important;
+                                    border-radius: 0px !important;
+                                    box-shadow: unset;
+                                    outline: none;
+                                    font: inherit;
+                                    line-height: 1;
+                                    width: 100%;
+                                    display: block;
+                                    background: transparent;
+                                    color: inherit;
+                                    transition: all 500ms ease;
+                                    padding: 8px;
+                                    max-width: 700px !important;
+                                    height: unset !important;
+                                    box-sizing: border-box !important;
+                                    letter-spacing: 0 !important;
+                                }
+
+                                .sd-root-modern.sd-root-modern--full-container {
+                                    overflow: hidden !important;
+                                }
+
+                                .sd-text {
+                                    width: 100% !important;
+                                }
+
+                                #vi-confirmation-form textarea {
+                                    font-size: 15px !important;
+                                    line-height: 15px !important;
+                                }
+
+                                #sq_100_ariaTitle,
+                                #sq_101_ariaTitle,
+                                #sq_102_ariaTitle,
+                                #sq_103_ariaTitle,
+                                #sq_104_ariaTitle,
+                                #sq_105_ariaTitle,
+                                #sq_106_ariaTitle,
+                                #sq_107_ariaTitle,
+                                #sq_108_ariaTitle {
+                                    text-align: center;
+                                    box-sizing: border-box;
+                                    background-repeat: no-repeat;
+                                    clear: both;
+                                    padding: 0 0 .4em;
+                                    outline: none;
+                                    font-size: 0;
+                                    line-height: 0;
+                                    position: static;
+                                    margin: 0;
+                                    display: block;
+                                    font-style: normal;
+                                    flex-direction: row;
+                                    white-space: normal;
+                                    font-weight: var(--sjs-font-questiontitle-weight, 600);
+                                    font-size: 15px !important;
+                                    line-height: 15px !important;
+                                    letter-spacing: 0 !important;
+                                    color: var(--sjs-font-questiontitle-color, var(--sjs-general-forecolor, var(--foreground, #161616)));
+                                }
+
+                                h5 .sv-string-viewer {
+                                    font-size: 16px !important;
+                                }
+
+                                .sd-text {
+                                    font-size: 15px !important;
+                                    line-height: 15px !important;
+                                    font-family: 'nunito sans', sans-serif !important;
+                                }
+
+                                #sq_100_ariaTitle span,
+                                #sq_101_ariaTitle span,
+                                #sq_102_ariaTitle span,
+                                #sq_103_ariaTitle span,
+                                #sq_104_ariaTitle span,
+                                #sq_105_ariaTitle span,
+                                #sq_106_ariaTitle span,
+                                #sq_107_ariaTitle span,
+                                #sq_108_ariaTitle span {
+                                    font-size: 17px !important;
+                                    line-height: 17px !important;
+                                }
+
+                                #sq_100_ariaDescription,
+                                #sq_101_ariaDescription,
+                                #sq_102_ariaDescription,
+                                #sq_103_ariaDescription,
+                                #sq_104_ariaDescription,
+                                #sq_105_ariaDescription,
+                                #sq_106_ariaDescription,
+                                #sq_107_ariaDescription {
+                                    text-align: center;
+                                    --sd-mobile-width: 600px;
+                                    outline: 0;
+                                    box-sizing: border-box;
+                                    padding: 0;
+                                    margin: 0;
+                                    background-repeat: no-repeat;
+                                    font-style: normal;
+                                    font-weight: var(--sjs-font-questiondescription-weight, 400);
+                                    color: var(--sjs-font-questiondescription-color, var(--sjs-general-forecolor-light, rgba(0, 0, 0, 0.45)));
+                                    font-size: var(--sjs-font-questiondescription-size, var(--sjs-font-size, 12px));
+                                    line-height: calc(1.5*(var(--sjs-font-questiondescription-size, var(--sjs-font-size, 12px))));
+                                    white-space: normal;
+                                    font-family: 'nunito sans', sans-serif !important;
+                                    font-size: 16px !important;
+                                    letter-spacing: 0 !important;
+                                    margin-top: calc(.25*var(--sd-base-vertical-padding) - .5*var(--sjs-base-unit, var(--base-unit, 8px)));
+                                }
+
+                                .sd-boolean__thumb {
+                                    color: #b6953c !important;
+                                    font-size: 15px !important;
+                                    font-size: var(--sjs-font-questiondescription-size, var(--sjs-font-size, 13px));
+                                    line-height: calc(1.5*(var(--sjs-font-questiondescription-size, var(--sjs-font-size, 13px))));
+                                }
+
+                                .sd-boolean__label {
+                                    font-size: 16px !important;
+                                    font-size: var(--sjs-font-questiondescription-size, var(--sjs-font-size, 13px));
+                                    line-height: calc(1.5*(var(--sjs-font-questiondescription-size, var(--sjs-font-size, 13px))));
+                                }
+
+                                .sd-input::-webkit-input-placeholder {
+                                    font-style: italic;
+                                }
+
+                                .sd-input:-moz-placeholder {
+                                    font-style: italic;
+                                }
+
+                                .sd-input::-moz-placeholder {
+                                    font-style: italic;
+                                }
+
+                                .sd-input:-ms-input-placeholder {
+                                    font-style: italic;
+                                }
+
+                                .sd-root-modern {
+                                    background-color: unset;
+                                }
+
+                                .sd-root-modern--mobile .sd-body.sd-body--static {
+                                    padding: 3px !important;
+                                }
+
+                                .sd-element--with-frame {
+                                    padding-left: 0;
+                                    padding-right: 0;
+                                    padding-top: 1em !important;
+                                    padding-bottom: 1em !important;
+                                    box-shadow: unset;
+                                    letter-spacing: 0 !important;
+                                }
+
+                                .sd-error {
+                                    box-sizing: border-box !important;
+                                    margin-left: 0 !important;
+                                    margin-right: 0 !important;
+                                    border-radius: 0 !important;
+                                    max-width: 440px !important;
+                                }
+
+                                .sd-btn {
+                                    background-color: rgba(251, 249, 248, 1) !important;
+                                    font-family: 'nunito sans', sans-serif !important;
+                                    font-weight: 400;
+                                    font-size: 18px !important;
+                                    text-transform: uppercase;
+                                    padding: 13px !important;
+                                    color: white !important;
+                                    letter-spacing: 0 !important;
+
+                                    background-color: rgb(189, 148, 90) !important;
+                                    border-color: white !important;
+                                    border-radius: 3px !important;
+                                    font-weight: bold !important;
+                                    width: 100% !important;
+                                    display: block !important;
+                                }
+
+                                .sd-action-bar {
+                                    width: 100% !important;
+                                    display: block !important;
+                                }
+
+                                .sd-btn:hover {
+                                    border-color: rgb(189, 148, 90) !important;
+                                    background-color: rgb(189, 148, 90, 0.7) !important;
+                                }
+
+                                .sd-action-bar {
+                                    width: 100% !important;
+                                    display: block !important;
+                                }
+
+
+                                textarea {
+                                    font-family: 'Cormorant Garamond', serif !important;
+                                    font-weight: 400;
+                                    font-size: 1rem !important;
+                                }
+
+                                fieldset {
+                                    display: flex !important;
+                                    flex-wrap: wrap !important;
+                                    gap: 0px !important;
+                                    align-items: flex-start !important;
+                                    flex-direction: column !important;
+                                }
+
+                                .sv-title-actions {
+                                    display: flex !important;
+                                    flex-wrap: wrap !important;
+                                    justify-content: center !important;
+                                }
+
+                                .sd-item--checked .sd-item__decorator {
+                                    background: rgb(189, 148, 90) !important;
+                                }
+
+                                .sd-boolean-root {
+                                    margin: 0 auto !important;
+                                }
+
+                                div.sd-element__content.sd-question__content>div>label>div.sd-boolean__switch>span {
+                                    border: 2px solid rgb(189, 148, 90);
+                                }
+
+                                .vi-confirmation-form input {
+                                    font-size: 14px !important;
+                                    color: #333 !important;
+                                    padding: 20px;
+                                }
+
+                                /* Fix: render SurveyJS dropdowns inside dialog as compact lists
+                                   instead of full-screen popups (applies when served via HTTP).
+                                   Use `position: fixed` and do NOT override `top/left` so JS can
+                                   position the popup correctly. */
+                                .dialog-box .sv-popup,
+                                #vi-confirmation-form .sv-popup,
+                                #vi-confirmation-form .sv-popup--dropdown {
+                                    position: fixed !important;
+                                    width: auto !important;
+                                    max-width: 420px !important;
+                                    height: auto !important;
+                                    max-height: 50vh !important;
+                                    z-index: 10050 !important;
+                                }
+
+                                #vi-confirmation-form .sv-popup__container {
+                                    margin: 0 !important;
+                                    box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+                                    border-radius: 6px !important;
+                                }
+
+                                #vi-confirmation-form .sv-popup__body-content {
+                                    max-height: 300px !important;
+                                    overflow: auto !important;
+                                }
+
+                                #vi-confirmation-form .sv-dropdown-popup {
+                                    height: auto !important;
+                                }
+                            </style>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer2">
+                <div style="text-align:center; padding:20px; font-size:14px;">
+                    © 2026 — invitație la nunta
+                </div>
+            </div>
+
+        </div>
+        <script src="static/bootstrap.min.js"></script>
+    </div>
+    <script>
+        window.language = "ro";
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+
+.previewWrapper {
+    background-color: #222;
+    /*overflow: hidden;*/
+    width: 100%;
+    height: 570px;
+    z-index: 3002;
+    border-bottom: 1px solid #444;
+    position: fixed;
+    bottom: -514px;
+    font-family: Arial, sans-serif !important;
+}
+
+.previewLeftSide {
+    float: left;
+    height: 56px;
+}
+
+.previewRightSide {
+    float: right;
+    height: 56px;
+}
+
+.previewHomeButton,
+.previewChooseButton,
+.previewNextTemplateButton,
+.previewPreviousTemplateButton,
+.previewToggleButton {
+    line-height: 10px;
+    padding: 10px;
+    margin-top: 13px;
+    float: left;
+    color: #fff;
+    font-size: 14px;
+
+}
+
+.previewHomeButton {
+    margin-left: 10px;
+    background: #C02942;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+
+.previewChooseButton {
+    margin-right: 10px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    background: #59BA41 !important;
+}
+
+.previewToggleButton {
+    background: #53777A !important;
+    color: #FFF !important;
+    text-transform: uppercase !important;
+    margin-right: 10px !important;
+
+}
+
+.previewToggleButton:hover,
+.previewToggleButton:focus {
+    text-decoration: none !important;
+    color: #EEE !important;
+}
+
+.previewNextTemplateButton,
+.previewPreviousTemplateButton {
+    color: #f97baa;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #444;
+    margin-top: 0;
+    padding-top: 13px;
+    line-height: 30px;
+    font-weight: bold;
+    background: #000;
+}
+
+.previewNextTemplateButton:hover,
+.previewPreviousTemplateButton:hover {
+    color: #fff;
+}
+
+.previewPreviousTemplateButton {
+    border-left: 0;
+    margin-left: 0;
+}
+
+.previewHomeButton:hover,
+.previewChooseButton:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer_bar_back_button {
+    position: absolute;
+    top: -33px;
+    z-index: 999999;
+    padding: 10px;
+    background: #1f1e1e;
+    border-left: 1px solid #444;
+    border-bottom: 1px solid #444;
+    border-radius: 10px 10px 0 0;
+    font-size: 12px;
+    color: #f9667e;
+    line-height: 1em;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.footer_bar_back_button:hover,
+.footer_bar_back_button:active .footer_bar_back_button:focus {
+    color: #eee;
+    text-decoration: none;
+    background: #1f1e1e;
+}
+
+.previewLeftSide .previewTemplateName {
+    color: #fff;
+    line-height: 56px;
+    padding-left: 10px;
+    border-left: 1px solid #444;
+}
+
+.glider.draggable .glider-slide img {
+    user-select: auto !important;
+    pointer-events: auto !important;
+}
+
+.previewCarousel {
+    border-top: 1px solid #777;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #fff;
+}
+
+@media (max-width: 767px) {
+    .hidden-xs {
+        display: none !important;
+    }
+
+    .previewWrapper {
+        height: 190px;
+        bottom: -130px;
+    }
+
+    .previewHomeButton,
+    .previewChooseButton,
+    .previewNextTemplateButton,
+    .previewPreviousTemplateButton,
+    .previewToggleButton {
+        font-size: 10px;
+        padding: 8px;
+    }
+
+    .previewCarousel {
+        border-top: 1px solid #777;
+        padding-top: 5px;
+        padding-bottom: 5px
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .hidden-sm {
+        display: none !important;
+    }
+}
