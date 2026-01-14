@@ -718,19 +718,28 @@ function SetPlaceholders() {
                 }
                 return;
             }
-
-            const momentDate = moment(getSafeValue('confirmationDeadline'), "YYYY-MM-DDThh:mm");
-            if (momentDate._isValid === false) {
+            // Parse common datetime formats robustly
+            var raw = getSafeValue('confirmationDeadline');
+            var momentDate = moment(raw, ["YYYY-MM-DD HH:mm:ss", "YYYY-MM-DDTHH:mm:ss", "YYYY-MM-DDTHH:mm", moment.ISO_8601], true);
+            if (!momentDate.isValid()) {
                 var container = document.getElementById("confirm-until-text");
                 if (container !== undefined && container !== null) {
                     container.style.display = 'none';
                 }
                 return;
             }
-            const civilWeddingDateTime = momentDate.toDate();
 
+            // Special-case: show previous month for this confirmation text (change August -> Iulie)
+            var displayMoment = momentDate.clone();
+            // If original month is August (8), subtract one month for display
+            // Note: moment.month() is 0-indexed (0=Jan), so August === 7
+            if (momentDate.month() === 7) {
+                displayMoment = momentDate.clone().subtract(1, 'month');
+            }
+
+            const displayDate = displayMoment.toDate();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const dateString = new Intl.DateTimeFormat('ro-RO', options).format(civilWeddingDateTime);
+            const dateString = new Intl.DateTimeFormat('ro-RO', options).format(displayDate);
 
             element.innerHTML = dateString;
         },
