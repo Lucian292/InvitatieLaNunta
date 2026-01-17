@@ -143,11 +143,9 @@
             background: #fff;
             text-align: center;
             overflow-y: auto;
-            overflow-x: visible;
+            overflow-y: scroll;
             scrollbar-width: none;
             -ms-overflow-style: none;
-            /* Allow dropdowns to overflow without being clipped */
-            z-index: 10001;
         }
 
         .close-button {
@@ -962,14 +960,21 @@
                                         const childrenPanel = s.getQuestionByName('childrenNames');
 
                                         function updatePanels() {
-                                            const a = Number(s.getValue('adultCount')) || 0;
-                                            const c = Number(s.getValue('childrenCount')) || 0;
-                                            if (adultPanel) adultPanel.panelCount = a;
-                                            if (childrenPanel) childrenPanel.panelCount = c;
+                                            const a = parseInt(s.getValue('adultCount')) || 0;
+                                            const c = parseInt(s.getValue('childrenCount')) || 0;
+                                            if (adultPanel) adultPanel.panelCount = Math.max(0, Math.min(a, 20));
+                                            if (childrenPanel) childrenPanel.panelCount = Math.max(0, Math.min(c, 20));
                                         }
 
                                         s.onValueChanged.add((sender, options) => {
                                             if (options.name === 'adultCount' || options.name === 'childrenCount') {
+                                                // Parse as integer to ensure proper numeric handling
+                                                const value = parseInt(options.value) || 0;
+                                                if (options.name === 'adultCount') {
+                                                    s.setValue('adultCount', Math.max(0, Math.min(value, 20)));
+                                                } else if (options.name === 'childrenCount') {
+                                                    s.setValue('childrenCount', Math.max(0, Math.min(value, 20)));
+                                                }
                                                 updatePanels();
                                             }
                                         });
@@ -1364,12 +1369,6 @@
 
                                 .sd-root-modern {
                                     background-color: unset;
-                                    /* Allow dropdowns to be visible outside the form container */
-                                    overflow: visible !important;
-                                }
-
-                                .sd-root-modern--mobile .sd-body.sd-body--static {
-                                    padding: 3px !important;
                                 }
 
                                 .sd-element--with-frame {
@@ -1474,16 +1473,12 @@
                                     height: auto !important;
                                     max-height: 50vh !important;
                                     z-index: 10050 !important;
-                                    /* Ensure dropdown appears directly below the control on both desktop and mobile */
-                                    min-width: 200px !important;
                                 }
 
                                 #vi-confirmation-form .sv-popup__container {
                                     margin: 0 !important;
                                     box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
                                     border-radius: 6px !important;
-                                    /* Override potential position transforms from mobile view */
-                                    transform: none !important;
                                 }
 
                                 #vi-confirmation-form .sv-popup__body-content {
@@ -1494,11 +1489,29 @@
                                 #vi-confirmation-form .sv-dropdown-popup {
                                     height: auto !important;
                                 }
-                                
-                                /* Additional fix for mobile dropdown positioning */
-                                #vi-confirmation-form .sv_q_dropdown_control {
-                                    position: relative !important;
-                                    z-index: 10001 !important;
+
+                                /* Ensure the form inside dialog allows popups to overflow */
+                                .dialog-box-inside .sd-root-modern {
+                                    overflow: visible !important;
+                                }
+
+                                .dialog-box-inside .sd-body {
+                                    overflow: visible !important;
+                                }
+
+                                .dialog-box-inside .sv-q_dropdown_control {
+                                    overflow: visible !important;
+                                    position: relative;
+                                    z-index: 1;
+                                }
+
+                                #vi-confirmation-form {
+                                    overflow: visible !important;
+                                }
+
+                                #vi-confirmation-form .sv-popup {
+                                    position: fixed !important;
+                                    z-index: 10050 !important;
                                 }
                             </style>
                         </div>

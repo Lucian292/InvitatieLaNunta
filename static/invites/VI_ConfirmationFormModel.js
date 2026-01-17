@@ -142,19 +142,15 @@ function CustomizeConfirmationFormModel() {
     // Replace the confirmation form model with the requested structure.
     VI_ConfirmationFormModel.elements = [
         {
-            type: "dropdown",
+            type: "text",
             name: "adultCount",
             title: "Câte persoane adulte vor veni?",
             isRequired: true,
-            choices: [
-                { value: 0, text: "0" },
-                { value: 1, text: "1" },
-                { value: 2, text: "2" },
-                { value: 3, text: "3" },
-                { value: 4, text: "4" },
-                { value: 5, text: "5" }
-            ],
-            
+            inputType: "number",
+            min: 0,
+            max: 20,
+            step: 1,
+            placeholder: "0"
         },
         {
             type: "paneldynamic",
@@ -176,19 +172,15 @@ function CustomizeConfirmationFormModel() {
             ]
         },
         {
-            type: "dropdown",
+            type: "text",
             name: "childrenCount",
             title: "Câți copii vor veni?",
             isRequired: true,
-            choices: [
-                { value: 0, text: "0" },
-                { value: 1, text: "1" },
-                { value: 2, text: "2" },
-                { value: 3, text: "3" },
-                { value: 4, text: "4" },
-                { value: 5, text: "5" }
-            ],
-            
+            inputType: "number",
+            min: 0,
+            max: 20,
+            step: 1,
+            placeholder: "0"
         },
         {
             type: "paneldynamic",
