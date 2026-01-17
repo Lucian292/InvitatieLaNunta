@@ -1841,22 +1841,23 @@ body.offcanvas .oliven-nav-toggle {
         overflow: hidden;
         z-index: 0;
         background-attachment: scroll;
+        background-size: cover;
+        background-position: center;
     }
 
     .bg-fixed-large::before {
         content: "";
         position: absolute;
-        top: -20%;
+        top: 0;
         left: 0;
         width: 100%;
-        height: 140%;
+        height: 100%;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        transform: translateY(var(--y, 0));
-        will-change: transform;
         z-index: -1;
         opacity: 1;
-        transition: transform 0.1s linear;
+        will-change: auto;
+        transform: none !important;
     }
 } 

@@ -20,74 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function MakeScrollEffect() {
     try {
-        if (window.innerWidth > 992) {
-            return;
-        }
-
-        const sections = document.querySelectorAll('.bg-fixed-large');
-        const speed = 0.2;
-
-        sections.forEach(section => {
-            const style = getComputedStyle(section);
-            var bgImage = style.backgroundImage;
-
-            if (section.style.backgroundImage && section.style.backgroundImage !== 'none') {
-                bgImage = section.style.backgroundImage;
-            }
-
-            if (bgImage && bgImage !== 'none') {
-                section.style.setProperty('--bg-image', bgImage);
-
-                section.style.background = 'none';
-                section.style.backgroundImage = 'none';
-
-                if (getComputedStyle(section).position === 'static') {
-                    section.style.position = 'relative';
-                }
-
-                if (!document.getElementById(`parallax-style-${section.id}`)) {
-                    const styleTag = document.createElement('style');
-                    styleTag.id = `parallax-style-${section.id}`;
-                    styleTag.innerHTML = `
-                        #${section.id}.bg-fixed-large::before {
-                            content: "";
-                            position: absolute;
-                            top: -20%;
-                            left: 0;
-                            width: 100%;
-                            height: 140%;
-                            background-image: var(--bg-image);
-                            background-size: cover;
-                            background-position: center;
-                            background-repeat: no-repeat;
-                            transform: translateY(var(--y,0));
-                            will-change: transform;
-                            z-index: -1;
-                            opacity: 1;
-                            transition: transform 0.1s linear;
-                        }
-                    `;
-                    document.head.appendChild(styleTag);
-                }
-            }
-        });
-
-        function onScroll() {
-            sections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                const offset = rect.top * speed;
-                section.style.setProperty('--y', `${offset}px`);
-            });
-        }
-
-        function rafScroll() {
-            requestAnimationFrame(() => {
-                onScroll();
-                rafScroll();
-            });
-        }
-
-        rafScroll();
+        // Disabled parallax effect on mobile to prevent background image issues
+        return;
 
     } catch (error) {
     }
