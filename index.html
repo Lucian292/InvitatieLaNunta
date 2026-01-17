@@ -143,9 +143,11 @@
             background: #fff;
             text-align: center;
             overflow-y: auto;
-            overflow-y: scroll;
+            overflow-x: visible;
             scrollbar-width: none;
             -ms-overflow-style: none;
+            /* Allow dropdowns to overflow without being clipped */
+            z-index: 10001;
         }
 
         .close-button {
@@ -1239,7 +1241,7 @@
                                 }
 
                                 .sd-root-modern.sd-root-modern--full-container {
-                                    overflow: hidden !important;
+                                    overflow: visible !important;
                                 }
 
                                 .sd-text {
@@ -1362,6 +1364,8 @@
 
                                 .sd-root-modern {
                                     background-color: unset;
+                                    /* Allow dropdowns to be visible outside the form container */
+                                    overflow: visible !important;
                                 }
 
                                 .sd-root-modern--mobile .sd-body.sd-body--static {
@@ -1470,12 +1474,16 @@
                                     height: auto !important;
                                     max-height: 50vh !important;
                                     z-index: 10050 !important;
+                                    /* Ensure dropdown appears directly below the control on both desktop and mobile */
+                                    min-width: 200px !important;
                                 }
 
                                 #vi-confirmation-form .sv-popup__container {
                                     margin: 0 !important;
                                     box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
                                     border-radius: 6px !important;
+                                    /* Override potential position transforms from mobile view */
+                                    transform: none !important;
                                 }
 
                                 #vi-confirmation-form .sv-popup__body-content {
@@ -1485,6 +1493,12 @@
 
                                 #vi-confirmation-form .sv-dropdown-popup {
                                     height: auto !important;
+                                }
+                                
+                                /* Additional fix for mobile dropdown positioning */
+                                #vi-confirmation-form .sv_q_dropdown_control {
+                                    position: relative !important;
+                                    z-index: 10001 !important;
                                 }
                             </style>
                         </div>
