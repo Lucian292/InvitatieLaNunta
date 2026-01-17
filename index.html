@@ -1444,9 +1444,8 @@
                                     font-size: 16px !important;
                                     font-size: var(--sjs-font-questiondescription-size, var(--sjs-font-size, 13px));
                                     line-height: calc(1.5*(var(--sjs-font-questiondescription-size, var(--sjs-font-size, 13px))));
-                                    display: flex !important;
-                                    align-items: center !important;
-                                    gap: 10px !important;
+                                    vertical-align: middle !important;
+                                    display: inline-block !important;
                                 }
 
                                 .sd-input::-webkit-input-placeholder {
@@ -1546,44 +1545,15 @@
 
                                 .sd-boolean-root {
                                     margin: 0 auto !important;
-                                    display: flex !important;
-                                    flex-direction: column !important;
-                                    align-items: center !important;
-                                    justify-content: center !important;
+                                    text-align: center !important;
                                 }
 
-                                /* Force boolean switch to render consistently across iOS/Android/Desktop */
-                                .sd-boolean__switch {
-                                    min-width: 50px !important;
-                                    height: 28px !important;
-                                    border-radius: 14px !important;
-                                    background-color: #e0e0e0 !important;
-                                    position: relative !important;
-                                    cursor: pointer !important;
-                                    -webkit-appearance: none !important;
-                                    appearance: none !important;
-                                }
-
-                                .sd-boolean__switch:checked {
-                                    background-color: rgb(189, 148, 90) !important;
-                                }
-
-                                /* Hide native radio fallback on iOS */
-                                .sd-boolean__item--radio input[type="radio"],
-                                .sd-boolean__item input[type="radio"] {
-                                    -webkit-appearance: none !important;
-                                    appearance: none !important;
-                                    width: 0 !important;
-                                    height: 0 !important;
-                                    display: none !important;
-                                }
-
-                                /* Align switch and label horizontally */
+                                /* Keep switch and label on same line with proper spacing */
                                 .sd-boolean__item {
-                                    display: flex !important;
+                                    display: inline-flex !important;
                                     align-items: center !important;
-                                    gap: 10px !important;
-                                    margin: 8px 0 !important;
+                                    gap: 8px !important;
+                                    margin: 6px 12px !important;
                                 }
 
                                 div.sd-element__content.sd-question__content>div>label>div.sd-boolean__switch>span {
