@@ -959,34 +959,46 @@
                                 CustomizeConfirmationFormModel();
                                 const survey = new Survey.Model(VI_ConfirmationFormModel);
 
-                                // Ensure dynamic panels reflect dropdown values (fix for paneldynamic not updating reliably)
+                                // Keep dynamic panels in sync with counts and attendance choice
                                 function applyDynamicPanelCounts(s) {
                                     try {
                                         const adultPanel = s.getQuestionByName('adultNames');
                                         const childrenPanel = s.getQuestionByName('childrenNames');
 
-                                        function updatePanels() {
-                                            const a = parseInt(s.getValue('adultCount')) || 0;
-                                            const c = parseInt(s.getValue('childrenCount')) || 0;
-                                            if (adultPanel) adultPanel.panelCount = Math.max(0, Math.min(a, 20));
-                                            if (childrenPanel) childrenPanel.panelCount = Math.max(0, Math.min(c, 20));
+                                        const clamp = (val) => Math.max(0, Math.min(parseInt(val) || 0, 20));
+
+                                        function syncPanels() {
+                                            const attending = s.getValue('guestResponse') !== false;
+
+                                            if (!attending) {
+                                                s.setValue('adultCount', 0);
+                                                s.setValue('childrenCount', 0);
+                                                s.setValue('adultNames', []);
+                                                s.setValue('childrenNames', []);
+                                            } else if (s.getValue('adultCount') === undefined || s.getValue('adultCount') === null) {
+                                                s.setValue('adultCount', 1);
+                                            }
+
+                                            const a = attending ? clamp(s.getValue('adultCount')) : 0;
+                                            const c = attending ? clamp(s.getValue('childrenCount')) : 0;
+
+                                            if (adultPanel) adultPanel.panelCount = a;
+                                            if (childrenPanel) childrenPanel.panelCount = c;
                                         }
 
                                         s.onValueChanged.add((sender, options) => {
+                                            if (options.name === 'guestResponse') {
+                                                syncPanels();
+                                                return;
+                                            }
+
                                             if (options.name === 'adultCount' || options.name === 'childrenCount') {
-                                                // Parse as integer to ensure proper numeric handling
-                                                const value = parseInt(options.value) || 0;
-                                                if (options.name === 'adultCount') {
-                                                    s.setValue('adultCount', Math.max(0, Math.min(value, 20)));
-                                                } else if (options.name === 'childrenCount') {
-                                                    s.setValue('childrenCount', Math.max(0, Math.min(value, 20)));
-                                                }
-                                                updatePanels();
+                                                sender.setValue(options.name, clamp(options.value));
+                                                syncPanels();
                                             }
                                         });
 
-                                        // set initial counts
-                                        updatePanels();
+                                        syncPanels();
                                     }
                                     catch (err) {
                                         console.error(err);
@@ -1045,49 +1057,55 @@
 
                                     // Get form data
                                     const formData = sender.data;
+                                    const attending = formData.guestResponse !== false;
+                                    const primaryName = attending
+                                        ? (formData.adultNames && formData.adultNames.length > 0 ? formData.adultNames[0].adultName : 'Invitat')
+                                        : (formData.guestName || 'Invitat');
                                     
-                                    // Format the email body
-                                    let emailBody = "=== CONFIRMARE PREZENȚĂ ===\n\n";
-                                    
-                                    if (formData.adultCount) {
-                                        emailBody += `Număr adulți: ${formData.adultCount}\n`;
+                                    // Build payload for FormSubmit; use emojis for color-safe labels
+                                    const responseLabel = attending ? '🟢 Particip' : '🔴 Nu particip';
+
+                                    const payload = new FormData();
+                                    payload.append('_subject', 'Confirmare Prezență Nuntă');
+                                    payload.append('_template', 'table');
+                                    payload.append('_captcha', 'false');
+
+                                    payload.append('Răspuns', responseLabel);
+
+                                    if (attending) {
+                                        const adultCount = parseInt(formData.adultCount) || 0;
+                                        const childrenCount = parseInt(formData.childrenCount) || 0;
+
+                                        payload.append('Număr adulți', String(adultCount));
                                         if (formData.adultNames && formData.adultNames.length > 0) {
-                                            emailBody += "Nume adulți:\n";
-                                            formData.adultNames.forEach((adult, index) => {
-                                                emailBody += `  ${index + 1}. ${adult.adultName}\n`;
-                                            });
+                                            const adultList = formData.adultNames
+                                                .map((adult, index) => `${index + 1}. ${adult.adultName}`)
+                                                .join('\n');
+                                            payload.append('Nume adulți', adultList);
                                         }
-                                        emailBody += "\n";
-                                    }
-                                    
-                                    if (formData.childrenCount) {
-                                        emailBody += `Număr copii: ${formData.childrenCount}\n`;
+
+                                        payload.append('Număr copii', String(childrenCount));
                                         if (formData.childrenNames && formData.childrenNames.length > 0) {
-                                            emailBody += "Nume copii:\n";
-                                            formData.childrenNames.forEach((child, index) => {
-                                                emailBody += `  ${index + 1}. ${child.childName}\n`;
-                                            });
+                                            const childList = formData.childrenNames
+                                                .map((child, index) => `${index + 1}. ${child.childName}`)
+                                                .join('\n');
+                                            payload.append('Nume copii', childList);
                                         }
-                                        emailBody += "\n";
+                                    } else if (formData.guestName) {
+                                        payload.append('Nume', formData.guestName);
                                     }
-                                    
+
                                     if (formData.guestMessage) {
-                                        emailBody += `Mesaj: ${formData.guestMessage}\n`;
+                                        payload.append('Mesaj', formData.guestMessage);
                                     }
-                                    
+
                                     // Send email using FormSubmit.co
-                                    fetch('https://formsubmit.co/ajax/tl.razvan@yahoo.com', {
+                                    fetch('https://formsubmit.co/ajax/lucian_munteanu01@yahoo.com', {
                                         method: 'POST',
                                         headers: {
-                                            'Content-Type': 'application/json',
                                             'Accept': 'application/json'
                                         },
-                                        body: JSON.stringify({
-                                            name: formData.adultNames && formData.adultNames.length > 0 ? formData.adultNames[0].adultName : 'Invitat',
-                                            message: emailBody,
-                                            _subject: 'Confirmare Prezență Nuntă',
-                                            _captcha: 'false'
-                                        })
+                                        body: payload
                                     })
                                     .then(response => response.json())
                                     .then(data => {

@@ -3,117 +3,93 @@ const VI_ConfirmationFormModel = {
     
     elements: [
         {
-            type: "text",
-            name: "guestName",
-            title: "Nume și Prenume",
-            description: "Numele și prenumele dumneavoastră.",
-            isRequired: true,
-            placeholder: "Andrei Popescu"
-        },
-
-        {
-            type: "text",
-            name: "guestEmailAddress",
-            title: "Adresa de e-mail",
-            description: "Adresa dumneavoastră de e-mail.",
-            isRequired: true,
-            inputType: "email",
-            placeholder: "andrei.popescu@gmail.com"
-        },
-
-        {
             type: "boolean",
             name: "guestResponse",
-            title: "Răspuns",
+            title: "Veți fi prezent la evenimentul nostru?",
             description: "În cazul în care refuzați să participați la eveniment, selectați \"Nu Particip\".",
-            defaultValue: "true",
+            defaultValue: true,
             isRequired: true,
             labelTrue: "Particip",
             labelFalse: "Nu Particip",
             swapOrder: true
         },
-
-        {
-            name: "civilWeddingResponse",
-            visible: false
-        },
-
-        {
-            name: "religiousWeddingResponse",
-            visible: false
-        },
-
-        {
-            name: "partyResponse",
-            visible: false
-        },
-
-        {
-            type: "boolean",
-            name: "guestHasPartner",
-            visibleIf: "({guestResponse} = true or {civilWeddingResponse} = true or {religiousWeddingResponse} = true or {partyResponse} = true)",
-            title: "Veți fi însoțit/ă la acest eveniment?",
-            defaultValue: "true",
-            isRequired: true,
-            labelTrue: "Da",
-            labelFalse: "Nu",
-            swapOrder: true
-        },
-
         {
             type: "text",
-            name: "guestPartnerName",
-            visibleIf: "({guestResponse} = true or {civilWeddingResponse} = true or {religiousWeddingResponse} = true or {partyResponse} = true) and {guestHasPartner} = true",
-            title: "Nume și Prenume partener",
-            description: "Numele și prenumele persoanei care vă va însoți la eveniment.\n",
+            name: "guestName",
+            title: "Nume și Prenume",
+            description: "Numele persoanei care completează formularul.",
             isRequired: true,
-            placeholder: "Andrei Popescu"
+            placeholder: "Andrei Popescu",
+            visibleIf: "{guestResponse} = false"
         },
-
-        {
-            type: "boolean",
-            name: "guestHasKids",
-            visibleIf: "({guestResponse} = true or {civilWeddingResponse} = true or {religiousWeddingResponse} = true or {partyResponse} = true)",
-            title: "Veți veni însoțit/ă de copii?",
-            defaultValue: "false",
-            isRequired: true,
-            labelTrue: "Da",
-            labelFalse: "Nu",
-            swapOrder: true
-        },
-
         {
             type: "text",
-            name: "guestKidsCount",
-            visibleIf: "{guestHasKids} = true and ({guestResponse} = true or {civilWeddingResponse} = true or {religiousWeddingResponse} = true or {partyResponse} = true)",
-            title: "Cu câți copii veți veni la acest eveniment?",
+            name: "adultCount",
+            title: "Câte persoane adulte vor veni?",
             isRequired: true,
-            requiredIf: "{guestHasKids} = true",
             inputType: "number",
+            defaultValue: 1,
             min: 0,
-            max: 66,
-            step: 1
+            max: 20,
+            step: 1,
+            placeholder: "0",
+            visibleIf: "{guestResponse} = true"
         },
-
         {
-            name: "guestFoodMenu",
-            visible: false
+            type: "paneldynamic",
+            name: "adultNames",
+            title: "Nume adulți",
+            visibleIf: "{guestResponse} = true and {adultCount} > 0",
+            panelCount: 1,
+            minPanelCount: 0,
+            allowAddPanel: false,
+            allowRemovePanel: false,
+            templateElements: [
+                {
+                    type: "text",
+                    name: "adultName",
+                    title: "Nume și Prenume",
+                    isRequired: true,
+                    placeholder: "Ion Popescu"
+                }
+            ]
         },
-
         {
-            name: "guestNeedsBooking",
-            visible: false
+            type: "text",
+            name: "childrenCount",
+            title: "Câți copii vor veni?",
+            isRequired: true,
+            inputType: "number",
+            defaultValue: 0,
+            min: 0,
+            max: 20,
+            step: 1,
+            placeholder: "0",
+            visibleIf: "{guestResponse} = true"
         },
-
         {
-            name: "guestPhoneNumber",
-            visible: false
+            type: "paneldynamic",
+            name: "childrenNames",
+            title: "Nume copii",
+            visibleIf: "{guestResponse} = true and {childrenCount} > 0",
+            panelCount: 0,
+            minPanelCount: 0,
+            allowAddPanel: false,
+            allowRemovePanel: false,
+            templateElements: [
+                {
+                    type: "text",
+                    name: "childName",
+                    title: "Nume și Prenume copil",
+                    isRequired: true,
+                    placeholder: "Ana Popescu"
+                }
+            ]
         },
-
         {
             type: "comment",
             name: "guestMessage",
-            title: "Mesaj",
+            title: "Mesaj (opțional)",
             placeholder: "Venim cu mare plăcere!"
         },
         {
@@ -139,25 +115,46 @@ function CustomizeConfirmationFormModel() {
         return;
     }
 
-    // Replace the confirmation form model with the requested structure.
-    VI_ConfirmationFormModel.elements = [
+    const attendanceFirstModel = [
+        {
+            type: "boolean",
+            name: "guestResponse",
+            title: "Veți fi prezent la evenimentul nostru?",
+            description: "În cazul în care refuzați să participați la eveniment, selectați \"Nu Particip\".",
+            defaultValue: true,
+            isRequired: true,
+            labelTrue: "Particip",
+            labelFalse: "Nu Particip",
+            swapOrder: true
+        },
+        {
+            type: "text",
+            name: "guestName",
+            title: "Nume și Prenume",
+            description: "Numele persoanei care completează formularul.",
+            isRequired: true,
+            placeholder: "Andrei Popescu",
+            visibleIf: "{guestResponse} = false"
+        },
         {
             type: "text",
             name: "adultCount",
             title: "Câte persoane adulte vor veni?",
             isRequired: true,
             inputType: "number",
+            defaultValue: 1,
             min: 0,
             max: 20,
             step: 1,
-            placeholder: "0"
+            placeholder: "0",
+            visibleIf: "{guestResponse} = true"
         },
         {
             type: "paneldynamic",
             name: "adultNames",
             title: "Nume adulți",
-            visibleIf: "{adultCount} > 0",
-            panelCount: "{adultCount}",
+            visibleIf: "{guestResponse} = true and {adultCount} > 0",
+            panelCount: 1,
             minPanelCount: 0,
             allowAddPanel: false,
             allowRemovePanel: false,
@@ -177,17 +174,19 @@ function CustomizeConfirmationFormModel() {
             title: "Câți copii vor veni?",
             isRequired: true,
             inputType: "number",
+            defaultValue: 0,
             min: 0,
             max: 20,
             step: 1,
-            placeholder: "0"
+            placeholder: "0",
+            visibleIf: "{guestResponse} = true"
         },
         {
             type: "paneldynamic",
             name: "childrenNames",
             title: "Nume copii",
-            visibleIf: "{childrenCount} > 0",
-            panelCount: "{childrenCount}",
+            visibleIf: "{guestResponse} = true and {childrenCount} > 0",
+            panelCount: 0,
             minPanelCount: 0,
             allowAddPanel: false,
             allowRemovePanel: false,
@@ -213,6 +212,8 @@ function CustomizeConfirmationFormModel() {
             html: '<div style="display: none;" id="confirmation-form-grecaptcha"></div><script>function RenderConfirmationCaptcha() { grecaptcha.render("confirmation-form-grecaptcha", { "sitekey" : "6LehxwUqAAAAAML1krECSprBU7iUjebmLaknUui3" }); };  WaitUntil(() => { return VI_GoogleRecaptchaJsLoaded === true; }, () => RenderConfirmationCaptcha(), 1000);</script>'
         }
     ];
+
+    VI_ConfirmationFormModel.elements = attendanceFirstModel;
 
     // We've replaced the model; skip the rest of the customization logic below.
     return;
@@ -617,7 +618,5 @@ document.addEventListener("DOMContentLoaded", () => {
         // console.log('Fixing Controls...');
 
         VI_Form_FixFormSwitchControl('guestResponse');
-        VI_Form_FixFormSwitchControl('guestHasPartner');
-        VI_Form_FixFormSwitchControl('guestHasKids');
     }, 1500);
 });
