@@ -1448,6 +1448,52 @@
                                     display: inline-block !important;
                                 }
 
+                                /* iOS fix: render boolean as pill buttons similar to desktop */
+                                @supports (-webkit-touch-callout: none) {
+                                    #vi-confirmation-form .sd-boolean-root {
+                                        display: flex !important;
+                                        justify-content: center !important;
+                                        gap: 12px !important;
+                                    }
+
+                                    #vi-confirmation-form .sd-boolean__item {
+                                        display: inline-flex !important;
+                                        align-items: center !important;
+                                        justify-content: center !important;
+                                        gap: 8px !important;
+                                        padding: 10px 18px !important;
+                                        border: 2px solid #bd945a !important;
+                                        border-radius: 28px !important;
+                                        background: #fff !important;
+                                        min-width: 120px !important;
+                                        box-sizing: border-box !important;
+                                    }
+
+                                    #vi-confirmation-form .sd-boolean__item input[type="radio"],
+                                    #vi-confirmation-form .sd-boolean__item input[type="checkbox"],
+                                    #vi-confirmation-form .sd-boolean__switch {
+                                        display: none !important;
+                                    }
+
+                                    #vi-confirmation-form .sd-boolean__label {
+                                        display: inline-block !important;
+                                        margin: 0 !important;
+                                        font-weight: 600 !important;
+                                        color: #222 !important;
+                                    }
+
+                                    /* active state */
+                                    #vi-confirmation-form .sd-item--checked .sd-boolean__item {
+                                        border-color: #0b7bff !important;
+                                        box-shadow: 0 0 0 2px #0b7bff inset !important;
+                                        color: #0b7bff !important;
+                                    }
+
+                                    #vi-confirmation-form .sd-item--checked .sd-boolean__label {
+                                        color: #0b7bff !important;
+                                    }
+                                }
+
                                 .sd-input::-webkit-input-placeholder {
                                     font-style: italic;
                                 }
