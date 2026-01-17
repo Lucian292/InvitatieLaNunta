@@ -1034,14 +1034,78 @@
                                 var registrationDone = false;
 
                                 survey.onCompleting.add(function (sender, options) {
-                                    // nu mai blocăm completarea
-                                    options.allow = true;
+                                    // Prevent multiple submissions
+                                    if (registrationDone) {
+                                        options.allow = true;
+                                        return;
+                                    }
 
-                                    // doar log local (sau salvezi în localStorage)
-                                    console.log("RSVP local:", sender.data);
-                                    localStorage.setItem("rsvp_last", JSON.stringify(sender.data));
+                                    // Block completion until email is sent
+                                    options.allow = false;
 
-                                    alert("Confirmare salvată local (nu se trimite pe server).");
+                                    // Get form data
+                                    const formData = sender.data;
+                                    
+                                    // Format the email body
+                                    let emailBody = "=== CONFIRMARE PREZENȚĂ ===\n\n";
+                                    
+                                    if (formData.adultCount) {
+                                        emailBody += `Număr adulți: ${formData.adultCount}\n`;
+                                        if (formData.adultNames && formData.adultNames.length > 0) {
+                                            emailBody += "Nume adulți:\n";
+                                            formData.adultNames.forEach((adult, index) => {
+                                                emailBody += `  ${index + 1}. ${adult.adultName}\n`;
+                                            });
+                                        }
+                                        emailBody += "\n";
+                                    }
+                                    
+                                    if (formData.childrenCount) {
+                                        emailBody += `Număr copii: ${formData.childrenCount}\n`;
+                                        if (formData.childrenNames && formData.childrenNames.length > 0) {
+                                            emailBody += "Nume copii:\n";
+                                            formData.childrenNames.forEach((child, index) => {
+                                                emailBody += `  ${index + 1}. ${child.childName}\n`;
+                                            });
+                                        }
+                                        emailBody += "\n";
+                                    }
+                                    
+                                    if (formData.guestMessage) {
+                                        emailBody += `Mesaj: ${formData.guestMessage}\n`;
+                                    }
+                                    
+                                    // Send email using FormSubmit.co
+                                    fetch('https://formsubmit.co/ajax/lucian_munteanu01@yahoo.com', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Accept': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                            name: formData.adultNames && formData.adultNames.length > 0 ? formData.adultNames[0].adultName : 'Invitat',
+                                            message: emailBody,
+                                            _subject: 'Confirmare Prezență Nuntă',
+                                            _captcha: 'false'
+                                        })
+                                    })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        console.log('Email sent successfully:', data);
+                                        localStorage.setItem("rsvp_last", JSON.stringify(formData));
+                                        registrationDone = true;
+                                        alert("Confirmare trimisă cu succes! Mulțumim!");
+                                        // Close dialog after successful submission
+                                        setTimeout(() => {
+                                            closeDialog();
+                                        }, 500);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error sending email:', error);
+                                        // Save locally even if email fails
+                                        localStorage.setItem("rsvp_last", JSON.stringify(formData));
+                                        alert("A apărut o eroare la trimiterea confirmării. Te rugăm să ne contactezi telefonic.");
+                                    });
                                 });
 
                                 $(function () {
