@@ -5,7 +5,6 @@ const EventParams = {
   invitationMeta: {
     HideParents: false,
     InvertGenders: true,
-    ShowEmailAddressRSVP: false,
     Locations: [
       {
         Id: "civil",
@@ -54,7 +53,7 @@ const EventParams = {
   religiousWeddingCountry: "",
   religiousWeddingCity: "Ia\u0219i",
   religiousWeddingAddress: "Str. Sărărie, Iași",
-  religiousWeddingDateTime: "2027-08-28 00:00:00",
+  religiousWeddingDateTime: "2027-08-28 14:00:00",
   isPartyEnabled: true,
   partyLocationName: "Diamond Ballroom",
   partyCountry: "Iași",
@@ -66,7 +65,6 @@ const EventParams = {
   isBookingSectionEnabled: true,
   isGuestPhoneSectionEnabled: true,
   isMuslimFoodMenuEnabled: false,
-  enableConfirmations: true,
   isLocked: false,
   isDemo: false,
 };

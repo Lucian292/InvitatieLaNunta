@@ -1,18 +1,3 @@
-var VI_GoogleRecaptchaJsLoaded = false;
-
-function WaitUntil(predicate, callback, checkInterval) {
-    if (checkInterval === undefined) {
-        checkInterval = 100;
-    }
-
-    const interval = setInterval(() => {
-        if (predicate()) {
-            clearInterval(interval);
-            callback();
-        }
-    }, checkInterval);
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     SetPlaceholders();
     MakeScrollEffect();
@@ -691,8 +676,7 @@ function SetPlaceholders() {
     ShowMapsButtonsIfNeed();
     InvertGendersIfNeeds(invertGenders);
 
-    var hideRSVP = HideRsvpButtonIfNeed();
-    ShowPhoneNumbersIfNeed(hideRSVP);
+    ShowPhoneNumbersIfNeed();
 
     UpdateEventLocationWidth();
     UpdateAndVisibility();
@@ -740,25 +724,7 @@ function UpdateAndVisibility() {
     }
 }
 
-function HideRsvpButtonIfNeed() {
-    if (EventParams === null || EventParams === undefined
-        || EventParams.invitationMeta === null || EventParams.invitationMeta === undefined
-        || EventParams.invitationMeta.HideRSVP === null || EventParams.invitationMeta.HideRSVP === undefined) {
-        return false;
-    }
-
-    if (EventParams.invitationMeta.HideRSVP === true) {
-        var header = document.getElementById('button-confirm-id-container');
-        if (header === null || header === undefined) {
-            return false;
-        }
-        header.style.display = "none";
-        return true;
-    }
-    return false;
-}
-
-function ShowPhoneNumbersIfNeed(hideRSVP) {
+function ShowPhoneNumbersIfNeed() {
     var header = document.getElementById('phone-numbers-container');
     if (header === null || header === undefined) {
         return;
@@ -851,16 +817,6 @@ function ShowPhoneNumbersIfNeed(hideRSVP) {
         return;
     }
 
-    if (hideRSVP === false && count > 0) {
-        var formular = document.getElementById("formular-msg");
-        if (formular !== undefined && formular !== null) {
-            formular.style.display = "block";
-        }
-    }
-
-    if (hideRSVP === true && count > 0) {
-        header.style.marginBottom = "45px";
-    }
 }
 
 function InvertGendersIfNeeds(invertGenders) {

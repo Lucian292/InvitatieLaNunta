@@ -1,0 +1,239 @@
+.rsvp-form {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.rsvp-fieldset {
+    display: grid;
+    gap: 0.75rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.rsvp-legend,
+.rsvp-label {
+    display: block;
+    margin: 0;
+    color: #3c3c3c;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.rsvp-legend {
+    margin-bottom: 0.15rem;
+}
+
+.rsvp-toggle {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
+    box-sizing: border-box;
+    height: 48px;
+    min-height: 48px;
+    padding: 0.2rem;
+    border: 1px solid rgba(189, 148, 90, 0.55);
+    border-radius: 0.35rem;
+    background-color: rgba(189, 148, 90, 0.08);
+}
+
+.rsvp-toggle-option {
+    display: grid;
+    align-self: stretch;
+    height: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+    place-items: center;
+    border-radius: 0.2rem;
+    color: #3c3c3c;
+    cursor: pointer;
+    font: 600 0.95rem/1.2 "Nunito Sans", sans-serif;
+    text-align: center;
+    transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.rsvp-toggle-option input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.rsvp-toggle-option:has(input:checked) {
+    background-color: rgb(189, 148, 90);
+    box-shadow: 0 2px 6px rgba(60, 60, 60, 0.12);
+    color: #fff;
+}
+
+.rsvp-toggle-option input:focus-visible + span {
+    outline: 2px solid rgba(189, 148, 90, 0.7);
+    outline-offset: 3px;
+}
+
+.rsvp-label + .rsvp-input,
+.rsvp-label + .rsvp-textarea {
+    margin-top: 0.15rem;
+}
+
+.rsvp-input,
+.rsvp-textarea {
+    width: 100%;
+    min-height: 48px;
+    box-sizing: border-box;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid rgba(60, 60, 60, 0.3);
+    border-radius: 0.25rem;
+    background-color: #fff;
+    color: #3c3c3c;
+    font: 16px/1.4 "Nunito Sans", sans-serif;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.rsvp-textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.rsvp-input:focus,
+.rsvp-textarea:focus,
+.rsvp-toggle-option input:focus-visible + span {
+    outline: 2px solid rgba(189, 148, 90, 0.65);
+    outline-offset: 2px;
+}
+
+.rsvp-textarea:focus {
+    border-color: rgba(189, 148, 90, 0.8);
+    box-shadow: none;
+    outline-color: rgba(189, 148, 90, 0.65);
+    outline-style: solid;
+    outline-width: 2px;
+    outline-offset: -2px;
+}
+
+.rsvp-error:empty {
+    min-height: 0;
+}
+
+.rsvp-input[aria-invalid="true"],
+.rsvp-textarea[aria-invalid="true"] {
+    border-color: #a33a32;
+}
+
+.rsvp-error {
+    min-height: 1.2em;
+    margin: 0;
+    color: #8d2d27;
+    font: 0.875rem/1.4 "Nunito Sans", sans-serif;
+}
+
+.rsvp-actions {
+    display: grid;
+    gap: 0.75rem;
+    justify-items: center;
+    margin-top: 0.25rem;
+}
+
+.rsvp-submit {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.8rem 1.2rem;
+    border: 0;
+    border-radius: 3px;
+    background-color: rgb(189, 148, 90);
+    color: #fff;
+    cursor: pointer;
+    font: 600 0.95rem/1.2 "Nunito Sans", sans-serif;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background-color 180ms ease, opacity 180ms ease;
+}
+
+.rsvp-submit:hover {
+    background-color: rgb(169, 134, 86);
+}
+
+.rsvp-submit:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.rsvp-status {
+    min-height: 1.5em;
+    margin: 0;
+    color: #3c3c3c;
+    font: 600 0.95rem/1.5 "Nunito Sans", sans-serif;
+    text-align: center;
+}
+
+.rsvp-status[data-state="success"] {
+    color: #276749;
+}
+
+.rsvp-status[data-state="error"] {
+    color: #8d2d27;
+}
+
+.rsvp-hidden {
+    pointer-events: none;
+}
+
+.rsvp-collapsible {
+    max-height: 2000px;
+    opacity: 1;
+    overflow: hidden;
+    visibility: visible;
+    transition: max-height 240ms ease, opacity 180ms ease, margin 240ms ease;
+}
+
+.rsvp-collapsible.rsvp-hidden {
+    max-height: 0;
+    min-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.rsvp-honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+@media (min-width: 576px) {
+    .rsvp-submit {
+        width: min(100%, 22rem);
+    }
+}
+
+@media (max-width: 991px) {
+    #rsvp > .container {
+        width: 100%;
+        max-width: 100%;
+        padding-right: max(15px, env(safe-area-inset-right));
+        padding-left: max(15px, env(safe-area-inset-left));
+    }
+
+    #rsvp > .container > .row {
+        justify-content: center;
+    }
+
+    #rsvp > .container > .row > .col-md-6 {
+        flex: 0 1 100%;
+        width: 100%;
+        max-width: 600px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}

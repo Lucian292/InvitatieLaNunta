@@ -27,20 +27,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Arizonia:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="./static/defaultV2.min.css" type="text/css" rel="stylesheet">
-    <link href="./static/modern.min.css" type="text/css" rel="stylesheet">
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/survey-jquery/1.12.6/survey.jquery.min.js"
-        integrity="sha512-gABharYVy2Hx282BKgs+Vb7YESGPBUh0LsagtP0hCFgbfAC6MlcN+N3jU/1CtCHNpqM4li/0Sx+/W1hquuVH4Q=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-        </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="./static/invites/VI_EventParamsDefault.js"></script>
     <script src="static/EventParams.js"></script>
-    <script src="./static/invites/VI_ConfirmationFormModel.js"></script>
     <script src="static/VI_StaticMain.js"></script>
 
     <link rel="stylesheet" href="static/animate.css">
@@ -48,6 +39,8 @@
     <link rel="stylesheet" href="static/bootstrap.css">
     <link rel="stylesheet" href="static/style.css">
     <link rel="stylesheet" href="static/main.css">
+    <link rel="stylesheet" href="static/rsvp.css">
+    <script src="static/rsvp.js" defer></script>
 
     <meta name="robots" content="noindex">
 
@@ -56,167 +49,7 @@
             background-color: white;
         }
 
-        .button-confirm {
-            border: none;
-            border-radius: 5px;
-
-            padding-left: 16px;
-            padding-right: 16px;
-            padding-top: 11px;
-            padding-bottom: 10px;
-
-
-            font-family: nunito sans, sans-serif;
-            font-feature-settings: normal;
-            font-kerning: auto;
-            font-optical-sizing: auto;
-            font-size: 15px;
-            font-weight: 600 !important;
-            text-transform: uppercase;
-            margin-top: 0px;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-            color: white !important;
-
-            background-color: rgb(189, 148, 90);
-            border-color: white !important;
-            border-radius: 3px !important;
-            animation: bounce 2s ease infinite;
-            cursor: pointer;
-        }
-
-        .button-confirm:hover{
-          background-color: rgb(169, 134, 86);
-        }
-
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0);
-            }
-
-            40% {
-                transform: translateY(-0.5rem);
-            }
-
-            60% {
-                transform: translateY(-0.2rem);
-            }
-        }
-
-        .dialog-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .dialog-box {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            max-height: 85vh;
-            padding: 3px;
-            padding-top: 20px !important;
-            padding-bottom: 20px !important;
-            background: #fff;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .dialog-box-inside {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            max-height: 80vh;
-            padding-top: 10px;
-            background: #fff;
-            text-align: center;
-            overflow-y: auto;
-            overflow-y: scroll;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .close-button {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 28px;
-            color: #333;
-            cursor: pointer;
-            z-index: 9999 !important;
-        }
-
-        @media (max-width: 600px) {
-            .dialog-box {
-                width: 90%;
-            }
-
-            #cadou {
-                font-size: 33px !important;
-                line-height: 34px !important;
-            }
-        }
-
-        @media (max-width: 360px) {
-            h5 {
-                font-size: 1.035rem !important;
-            }
-        }
-
-        @media (max-width: 345px) {
-
-            #event-date-id-header {
-                font-size: 1.2rem !important;
-            }
-
-            #event-name {
-                font-size: 1.2rem !important;
-            }
-
-            #bride-firstname,
-            #groom-firstname {
-                font-size: 60px !important;
-                line-height: 62px !important;
-            }
-
-            #vi-cd-message {
-                font-size: 2.5rem !important;
-            }
-
-            .parents-container,
-            .godparents-container {
-                font-size: 2rem !important;
-                line-height: 2.1rem !important;
-            }
-
-            #godparents-pairs p {
-                font-size: 2rem !important;
-                line-height: 2.1rem !important;
-            }
-
-            .msg {
-                font-size: 14px !important;
-                line-height: 22px !important;
-            }
-        }
-
-        .dialog-box-inside::-webkit-scrollbar {
-            display: none;
-        }
-
-        @media screen and (min-width:992px) {
+@media screen and (min-width:992px) {
             #rsvp {
                 background-image: url('static/112-desk.jpeg') !important;
                 background-attachment: fixed !important;
@@ -232,11 +65,7 @@
                 padding-bottom: 30px !important;
             }
 
-            #confirmare-label {
-                font-size: 2.7rem !important;
-            }
-
-            #prima-zi {
+#prima-zi {
                 margin-top: 35px !important;
             }
 
@@ -922,756 +751,97 @@
                                         de telefon:
                                     </span>
                                 </div>
-                                <div id="formular-msg" style="display: none; margin-top: 5px; margin-bottom: 20px;">
-                                    <span class="la-numere">
-                                        sau prin formularul de mai jos
-                                    </span>
-                                </div>
                             </h2>
-                            <script>
-                                function openDialog() {
-                                    document.getElementById("dialogOverlay").style.display = "flex";
-                                }
+                            <form id="rsvp-form" class="rsvp-form" novalidate>
+                                <fieldset id="rsvp-attendance-fieldset" class="rsvp-fieldset">
+                                    <legend class="rsvp-legend">Vei participa la nunta noastră?</legend>
+                                    <div class="rsvp-toggle" role="group" aria-label="Confirmarea participării">
+                                        <label class="rsvp-toggle-option">
+                                            <input type="radio" name="attendance" value="no">
+                                            <span>Nu particip</span>
+                                        </label>
+                                        <label class="rsvp-toggle-option">
+                                            <input type="radio" name="attendance" value="yes" checked required>
+                                            <span>Particip</span>
+                                        </label>
+                                    </div>
+                                </fieldset>
 
-                                function closeDialog() {
-                                    document.getElementById("dialogOverlay").style.display = "none";
-                                }
+                                <p id="rsvp-decline-message" class="rsvp-status rsvp-collapsible rsvp-hidden"
+                                    aria-live="polite">
+                                    Îți mulțumim că ne-ai anunțat. Ne pare rău că nu vei putea fi alături de noi.
+                                </p>
 
-                            </script>
-                            <div id="button-confirm-id-container"
-                                style="margin-bottom: 0px; margin-top: 10px !important; text-align: center; display: flex; justify-content: center;">
-                                <button class="button-confirm" onclick="openDialog()">Confirmă
-                                    prezența</button>
-                            </div>
-                        </div>
+                                <div id="rsvp-participants" class="rsvp-fieldset rsvp-collapsible">
+                                    <div class="rsvp-fieldset">
+                                        <label id="rsvp-main-guest-label" class="rsvp-label" for="rsvp-main-guest">
+                                            Numele și prenumele invitatului principal
+                                        </label>
+                                        <input id="rsvp-main-guest" class="rsvp-input" name="main_guest" type="text"
+                                            autocomplete="name" maxlength="100" placeholder="Exemplu: Ion Popescu"
+                                            required>
+                                        <p id="rsvp-main-guest-error" class="rsvp-error" aria-live="polite"></p>
+                                    </div>
+
+                                    <div id="rsvp-attending-details" class="rsvp-fieldset rsvp-collapsible">
+                                        <div class="rsvp-fieldset">
+                                        <label class="rsvp-label" for="rsvp-partner">
+                                            Numele și prenumele partenerului / partenerei (opțional)
+                                        </label>
+                                        <input id="rsvp-partner" class="rsvp-input" name="partner" type="text"
+                                            autocomplete="name" maxlength="100" placeholder="Exemplu: Maria Popescu">
+                                        </div>
+
+                                        <fieldset id="rsvp-children-fieldset" class="rsvp-fieldset">
+                                        <legend class="rsvp-legend">Veniți împreună cu copii?</legend>
+                                        <div class="rsvp-toggle" role="group" aria-label="Participarea copiilor">
+                                            <label class="rsvp-toggle-option">
+                                                <input type="radio" name="has_children" value="no" checked>
+                                                <span>Nu</span>
+                                            </label>
+                                            <label class="rsvp-toggle-option">
+                                                <input type="radio" name="has_children" value="yes">
+                                                <span>Da</span>
+                                            </label>
+                                        </div>
+                                        </fieldset>
+
+                                        <div id="rsvp-children-names-field" class="rsvp-fieldset rsvp-collapsible rsvp-hidden">
+                                        <label class="rsvp-label" for="rsvp-children-names">
+                                            Numele și prenumele copiilor
+                                        </label>
+                                        <textarea id="rsvp-children-names" class="rsvp-textarea"
+                                            name="children_names" maxlength="1000"
+                                            placeholder="Introduceți numele tuturor copiilor"></textarea>
+                                        </div>
+
+                                        <div class="rsvp-fieldset">
+                                        <label class="rsvp-label" for="rsvp-notes">
+                                            Ai ceva să ne transmiți? (opțional)
+                                        </label>
+                                        <textarea id="rsvp-notes" class="rsvp-textarea" name="notes" maxlength="1000"
+                                            placeholder="Scrie aici orice informație importantă pentru noi."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="rsvp-honeypot" aria-hidden="true">
+                                    <label for="rsvp-website">Website</label>
+                                    <input id="rsvp-website" name="website" type="text" tabindex="-1"
+                                        autocomplete="off">
+                                </div>
+
+                                <div class="rsvp-actions">
+                                    <button class="rsvp-submit" type="submit">Trimite răspunsul</button>
+                                    <p id="rsvp-status" class="rsvp-status" aria-live="polite"></p>
+                                </div>
+                            </form>
+</div>
                     </div>
                 </div>
                 <br><br>
             </div>
 
-            <div id="dialogOverlay" class="dialog-overlay" style="z-index: 199999 !important;">
-                <div class="dialog-box">
-                    <span class="close-button" onclick="closeDialog()">×</span>
-                    <div class="dialog-box-inside">
-                        <div style="padding: 28px;">
-                            <div style="display: flex; align-items: center; justify-content: center;">
-                                <span id="confirmare-label"
-                                    style="padding: 10px; color:#c7a758 !important;  font-family: 'Arizonia', cursive !important;;text-transform: none; font-size: 3.5rem; font-style: normal;">Confirmare
-                                </span>
-                            </div>
-                            <div id="vi-confirmation-form">
-                            </div>
-
-                            <script>
-                                CustomizeConfirmationFormModel();
-                                const survey = new Survey.Model(VI_ConfirmationFormModel);
-
-                                // Keep dynamic panels in sync with counts and attendance choice
-                                function applyDynamicPanelCounts(s) {
-                                    try {
-                                        const adultPanel = s.getQuestionByName('adultNames');
-                                        const childrenPanel = s.getQuestionByName('childrenNames');
-
-                                        const clamp = (val) => Math.max(0, Math.min(parseInt(val) || 0, 20));
-
-                                        function syncPanels() {
-                                            const attending = s.getValue('guestResponse') !== false;
-
-                                            if (!attending) {
-                                                s.setValue('adultCount', 0);
-                                                s.setValue('childrenCount', 0);
-                                                s.setValue('adultNames', []);
-                                                s.setValue('childrenNames', []);
-                                            } else if (s.getValue('adultCount') === undefined || s.getValue('adultCount') === null) {
-                                                s.setValue('adultCount', 1);
-                                            }
-
-                                            const a = attending ? clamp(s.getValue('adultCount')) : 0;
-                                            const c = attending ? clamp(s.getValue('childrenCount')) : 0;
-
-                                            if (adultPanel) adultPanel.panelCount = a;
-                                            if (childrenPanel) childrenPanel.panelCount = c;
-                                        }
-
-                                        s.onValueChanged.add((sender, options) => {
-                                            if (options.name === 'guestResponse') {
-                                                syncPanels();
-                                                return;
-                                            }
-
-                                            if (options.name === 'adultCount' || options.name === 'childrenCount') {
-                                                sender.setValue(options.name, clamp(options.value));
-                                                syncPanels();
-                                            }
-                                        });
-
-                                        syncPanels();
-                                    }
-                                    catch (err) {
-                                        console.error(err);
-                                    }
-                                }
-
-                                applyDynamicPanelCounts(survey);
-
-                                // Hide dialog close-button while interacting with dropdowns/selects
-                                (function () {
-                                    try {
-                                        const dlgClose = document.querySelector('.close-button');
-                                        const formEl = document.getElementById('vi-confirmation-form');
-                                        if (!dlgClose || !formEl) return;
-
-                                        function hideClose() { dlgClose.style.display = 'none'; }
-                                        function showClose() { dlgClose.style.display = ''; }
-
-                                        formEl.addEventListener('focusin', function (e) {
-                                            if (e.target && (e.target.tagName === 'SELECT' || e.target.closest('.sv_q_dropdown_control'))) {
-                                                hideClose();
-                                            }
-                                        });
-
-                                        formEl.addEventListener('mousedown', function (e) {
-                                            if (e.target && (e.target.tagName === 'SELECT' || e.target.closest('.sv_q_dropdown_control'))) {
-                                                hideClose();
-                                            }
-                                        });
-
-                                        formEl.addEventListener('focusout', function (e) {
-                                            setTimeout(function () {
-                                                const active = document.activeElement;
-                                                if (!formEl.contains(active) || active.tagName !== 'SELECT') showClose();
-                                            }, 80);
-                                        });
-
-                                        document.addEventListener('click', function (e) {
-                                            if (!formEl.contains(e.target)) showClose();
-                                        });
-                                    }
-                                    catch (err) { console.error(err); }
-                                })();
-
-                                var registrationDone = false;
-
-                                survey.onCompleting.add(function (sender, options) {
-                                    // Prevent multiple submissions
-                                    if (registrationDone) {
-                                        options.allow = true;
-                                        return;
-                                    }
-
-                                    // Block completion until email is sent
-                                    options.allow = false;
-
-                                    // Get form data
-                                    const formData = sender.data;
-                                    const attending = formData.guestResponse !== false;
-                                    const primaryName = attending
-                                        ? (formData.adultNames && formData.adultNames.length > 0 ? formData.adultNames[0].adultName : 'Invitat')
-                                        : (formData.guestName || 'Invitat');
-                                    
-                                    // Build payload for FormSubmit; use emojis for color-safe labels
-                                    const responseLabel = attending ? '🟢 Particip' : '🔴 Nu particip';
-
-                                    const payload = new FormData();
-                                    payload.append('_subject', 'Confirmare Prezență Nuntă');
-                                    payload.append('_template', 'table');
-                                    payload.append('_captcha', 'false');
-
-                                    payload.append('Răspuns', responseLabel);
-
-                                    if (attending) {
-                                        const adultCount = parseInt(formData.adultCount) || 0;
-                                        const childrenCount = parseInt(formData.childrenCount) || 0;
-
-                                        payload.append('Număr adulți', String(adultCount));
-                                        if (formData.adultNames && formData.adultNames.length > 0) {
-                                            const adultList = formData.adultNames
-                                                .map((adult, index) => `${index + 1}. ${adult.adultName}`)
-                                                .join('\n');
-                                            payload.append('Nume adulți', adultList);
-                                        }
-
-                                        payload.append('Număr copii', String(childrenCount));
-                                        if (formData.childrenNames && formData.childrenNames.length > 0) {
-                                            const childList = formData.childrenNames
-                                                .map((child, index) => `${index + 1}. ${child.childName}`)
-                                                .join('\n');
-                                            payload.append('Nume copii', childList);
-                                        }
-                                    } else if (formData.guestName) {
-                                        payload.append('Nume', formData.guestName);
-                                    }
-
-                                    if (formData.guestMessage) {
-                                        payload.append('Mesaj', formData.guestMessage);
-                                    }
-
-                                    // Send email using FormSubmit.co
-                                    fetch('https://formsubmit.co/ajax/lucian_munteanu01@yahoo.com', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Accept': 'application/json'
-                                        },
-                                        body: payload
-                                    })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        console.log('Email sent successfully:', data);
-                                        localStorage.setItem("rsvp_last", JSON.stringify(formData));
-                                        registrationDone = true;
-                                        alert("Confirmare trimisă cu succes! Mulțumim!");
-                                        // Close dialog after successful submission
-                                        setTimeout(() => {
-                                            closeDialog();
-                                        }, 500);
-                                    })
-                                    .catch(error => {
-                                        console.error('Error sending email:', error);
-                                        // Save locally even if email fails
-                                        localStorage.setItem("rsvp_last", JSON.stringify(formData));
-                                        alert("A apărut o eroare la trimiterea confirmării. Te rugăm să ne contactezi telefonic.");
-                                    });
-                                });
-
-                                $(function () {
-                                    $("#vi-confirmation-form").Survey({ model: survey });
-                                });
-
-                                // (Removed aggressive JS fallback that hid nodes — keeping DOM intact)
-
-                                function onloadRecaptchaCallback() {
-                                    VI_GoogleRecaptchaJsLoaded = true;
-                                }
-                            </script>
-
-                            <script
-                                src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit"
-                                async defer></script>
-                            <style>
-                                #vi-confirmation-form {
-                                    padding-left: 0em;
-                                    padding-right: 0em;
-                                    font-family: 'nunito sans', sans-serif !important;
-                                    box-sizing: border-box;
-                                    margin: 0;
-                                    display: block;
-                                    z-index: 10000;
-                                    letter-spacing: 0 !important;
-                                }
-
-                                /* Ensure dropdown selected value is visible across browsers/devices */
-                                #vi-confirmation-form select,
-                                #vi-confirmation-form .sv_q_dropdown_control select,
-                                #vi-confirmation-form .sv_select_control,
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-select {
-                                    color: #222 !important;
-                                    opacity: 1 !important;
-                                    -webkit-text-fill-color: #222 !important;
-                                    -webkit-appearance: none !important;
-                                    /* increase control height and vertical centering to avoid clipping */
-                                    height: 56px !important;
-                                    min-height: 52px !important;
-                                    line-height: 1.6 !important;
-                                    padding-top: 10px !important;
-                                    padding-bottom: 10px !important;
-                                    padding-left: 10px !important;
-                                    box-sizing: border-box !important;
-                                    font-size: 16px !important;
-                                }
-
-                                /* Ensure the SurveyJS select wrapper vertically centers content */
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-select {
-                                    display: flex !important;
-                                    align-items: center !important;
-                                    height: 44px !important;
-                                    min-height: 40px !important;
-                                    padding-top: 0 !important;
-                                    padding-bottom: 0 !important;
-                                    box-sizing: border-box !important;
-                                    background-image: none !important;
-                                }
-
-                                /* Increase inner spacing so placeholder/selected text isn't clipped */
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-select span,
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-select .sv-string-viewer,
-                                #vi-confirmation-form select,
-                                #vi-confirmation-form .sv_q_dropdown_control select {
-                                    color: #222 !important;
-                                    opacity: 1 !important;
-                                    -webkit-text-fill-color: #222 !important;
-                                    font-size: 15px !important;
-                                    line-height: 1.4 !important;
-                                    padding-top: 6px !important;
-                                    padding-bottom: 6px !important;
-                                    background-image: none !important;
-                                    text-shadow: none !important;
-                                }
-
-                                /* Ensure the visible text is vertically centered inside the control */
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-select span {
-                                    display: inline-block !important;
-                                    vertical-align: middle !important;
-                                }
-
-                                /* Remove clear/eraser and placeholder overlays that may hide the value.
-                                   Add broad selectors to cover different SurveyJS versions */
-                                /* Hide specific clear/clean buttons but avoid broad selectors */
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-clear-btn,
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-clear-button,
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-clear,
-                                #vi-confirmation-form .sd-dropdown_clean-button,
-                                #vi-confirmation-form .sd-dropdown_clean-button-svg {
-                                    display: none !important;
-                                    opacity: 0 !important;
-                                    visibility: hidden !important;
-                                    width: 0 !important;
-                                    height: 0 !important;
-                                }
-
-                                /* Ensure any SVG/icon inside the select wrapper doesn't overlay the value */
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-select svg,
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-select i {
-                                    display: none !important;
-                                }
-
-                                /* Also hide any pseudo-elements that could overlay the value */
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-select::after,
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-select::before,
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-string-viewer::before,
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-string-viewer::after {
-                                    display: none !important;
-                                    content: none !important;
-                                }
-
-                                /* Native select fallbacks */
-                                #vi-confirmation-form select::-ms-expand { display: none !important; }
-                                #vi-confirmation-form select { background-image: none !important; }
-
-                                /* Removed broad-hide rules to avoid hiding legitimate form elements */
-
-                                /* Force the string viewer to vertically center and be tall enough */
-                                #vi-confirmation-form .sv-string-viewer,
-                                #vi-confirmation-form .sd-dropdown__value,
-                                #vi-confirmation-form .sd-dropdown__placeholder,
-                                #vi-confirmation-form .sd-dropdown__hint-suffix,
-                                #vi-confirmation-form .sd-dropdown__hint-prefix {
-                                    line-height: 44px !important;
-                                    min-height: 40px !important;
-                                    height: 44px !important;
-                                    padding-top: 0 !important;
-                                    padding-bottom: 0 !important;
-                                    box-sizing: border-box !important;
-                                    color: #222 !important;
-                                }
-
-                                /* Make placeholder text fully visible and vertically centered */
-                                #vi-confirmation-form .sd-dropdown__placeholder,
-                                #vi-confirmation-form .sv-string-viewer::before {
-                                    line-height: 44px !important;
-                                    transform: none !important;
-                                }
-
-                                /* Force value visibility in all states */
-                                #vi-confirmation-form .sv-string-viewer,
-                                #vi-confirmation-form .sv-string-viewer span,
-                                #vi-confirmation-form .sd-dropdown__value,
-                                #vi-confirmation-form .sd-dropdown__value span,
-                                #vi-confirmation-form select {
-                                    color: #222 !important;
-                                    opacity: 1 !important;
-                                    -webkit-text-fill-color: #222 !important;
-                                }
-
-                                /* If SurveyJS uses an empty placeholder element, keep it visible and not clipped */
-                                #vi-confirmation-form .sd-dropdown__placeholder {
-                                    color: rgba(0,0,0,0.4) !important;
-                                }
-
-                                /* Make sure placeholder icon doesn't overlay the value */
-                                #vi-confirmation-form .sv_q_dropdown_control .sv-choose-none {
-                                    display: none !important;
-                                }
-
-                                #vi-confirmation-form span {
-                                    font-family: 'nunito sans', sans-serif !important;
-                                    letter-spacing: 0 !important;
-                                }
-
-                                #vi-confirmation-form input {
-                                    padding: 20px;
-                                    border: none;
-                                    border-bottom: 1px solid rgba(128, 128, 128, 0.365) !important;
-                                    border-radius: 0px !important;
-                                }
-
-                                .sd-title {
-                                    font-family: 'nunito sans', sans-serif !important;
-                                    font-size: 15px !important;
-                                }
-
-                                .sd-body.sd-body--static {
-                                    padding-bottom: 10px !important;
-                                }
-
-                                .sd-input {
-                                    --sd-mobile-width: 600px;
-                                    white-space: nowrap;
-                                    margin: 0;
-                                    position: static;
-                                    text-align: start;
-                                    font-family: 'nunito sans', sans-serif !important;
-                                    font-size: 15px !important;
-                                    border: none;
-                                    border-bottom: 1px solid rgba(128, 128, 128, 0.365) !important;
-                                    border-radius: 0px !important;
-                                    box-shadow: unset;
-                                    outline: none;
-                                    font: inherit;
-                                    line-height: 1;
-                                    width: 100%;
-                                    display: block;
-                                    background: transparent;
-                                    color: inherit;
-                                    transition: all 500ms ease;
-                                    padding: 8px;
-                                    max-width: 700px !important;
-                                    height: unset !important;
-                                    box-sizing: border-box !important;
-                                    letter-spacing: 0 !important;
-                                }
-
-                                .sd-root-modern.sd-root-modern--full-container {
-                                    overflow: visible !important;
-                                }
-
-                                .sd-text {
-                                    width: 100% !important;
-                                }
-
-                                #vi-confirmation-form textarea {
-                                    font-size: 15px !important;
-                                    line-height: 15px !important;
-                                }
-
-                                #sq_100_ariaTitle,
-                                #sq_101_ariaTitle,
-                                #sq_102_ariaTitle,
-                                #sq_103_ariaTitle,
-                                #sq_104_ariaTitle,
-                                #sq_105_ariaTitle,
-                                #sq_106_ariaTitle,
-                                #sq_107_ariaTitle,
-                                #sq_108_ariaTitle {
-                                    text-align: center;
-                                    box-sizing: border-box;
-                                    background-repeat: no-repeat;
-                                    clear: both;
-                                    padding: 0 0 .4em;
-                                    outline: none;
-                                    font-size: 0;
-                                    line-height: 0;
-                                    position: static;
-                                    margin: 0;
-                                    display: block;
-                                    font-style: normal;
-                                    flex-direction: row;
-                                    white-space: normal;
-                                    font-weight: var(--sjs-font-questiontitle-weight, 600);
-                                    font-size: 15px !important;
-                                    line-height: 15px !important;
-                                    letter-spacing: 0 !important;
-                                    color: var(--sjs-font-questiontitle-color, var(--sjs-general-forecolor, var(--foreground, #161616)));
-                                }
-
-                                h5 .sv-string-viewer {
-                                    font-size: 16px !important;
-                                }
-
-                                .sd-text {
-                                    font-size: 15px !important;
-                                    line-height: 15px !important;
-                                    font-family: 'nunito sans', sans-serif !important;
-                                }
-
-                                #sq_100_ariaTitle span,
-                                #sq_101_ariaTitle span,
-                                #sq_102_ariaTitle span,
-                                #sq_103_ariaTitle span,
-                                #sq_104_ariaTitle span,
-                                #sq_105_ariaTitle span,
-                                #sq_106_ariaTitle span,
-                                #sq_107_ariaTitle span,
-                                #sq_108_ariaTitle span {
-                                    font-size: 17px !important;
-                                    line-height: 17px !important;
-                                }
-
-                                #sq_100_ariaDescription,
-                                #sq_101_ariaDescription,
-                                #sq_102_ariaDescription,
-                                #sq_103_ariaDescription,
-                                #sq_104_ariaDescription,
-                                #sq_105_ariaDescription,
-                                #sq_106_ariaDescription,
-                                #sq_107_ariaDescription {
-                                    text-align: center;
-                                    --sd-mobile-width: 600px;
-                                    outline: 0;
-                                    box-sizing: border-box;
-                                    padding: 0;
-                                    margin: 0;
-                                    background-repeat: no-repeat;
-                                    font-style: normal;
-                                    font-weight: var(--sjs-font-questiondescription-weight, 400);
-                                    color: var(--sjs-font-questiondescription-color, var(--sjs-general-forecolor-light, rgba(0, 0, 0, 0.45)));
-                                    font-size: var(--sjs-font-questiondescription-size, var(--sjs-font-size, 12px));
-                                    line-height: calc(1.5*(var(--sjs-font-questiondescription-size, var(--sjs-font-size, 12px))));
-                                    white-space: normal;
-                                    font-family: 'nunito sans', sans-serif !important;
-                                    font-size: 16px !important;
-                                    letter-spacing: 0 !important;
-                                    margin-top: calc(.25*var(--sd-base-vertical-padding) - .5*var(--sjs-base-unit, var(--base-unit, 8px)));
-                                }
-
-                                .sd-boolean__thumb {
-                                    color: #b6953c !important;
-                                    font-size: 15px !important;
-                                    font-size: var(--sjs-font-questiondescription-size, var(--sjs-font-size, 13px));
-                                    line-height: calc(1.5*(var(--sjs-font-questiondescription-size, var(--sjs-font-size, 13px))));
-                                }
-
-                                .sd-boolean__label {
-                                    font-size: 16px !important;
-                                    font-size: var(--sjs-font-questiondescription-size, var(--sjs-font-size, 13px));
-                                    line-height: calc(1.5*(var(--sjs-font-questiondescription-size, var(--sjs-font-size, 13px))));
-                                    vertical-align: middle !important;
-                                    display: inline-block !important;
-                                }
-
-                                /* iOS fix: render boolean as pill buttons similar to desktop */
-                                @supports (-webkit-touch-callout: none) {
-                                    #vi-confirmation-form .sd-boolean-root {
-                                        display: flex !important;
-                                        justify-content: center !important;
-                                        gap: 10px !important;
-                                    }
-
-                                    #vi-confirmation-form .sd-boolean__item {
-                                        display: inline-flex !important;
-                                        align-items: center !important;
-                                        justify-content: center !important;
-                                        gap: 8px !important;
-                                        padding: 10px 20px !important;
-                                        border: 2px solid #d8d8d8 !important;
-                                        border-radius: 26px !important;
-                                        background: #f7f7f7 !important;
-                                        min-width: 130px !important;
-                                        min-height: 44px !important;
-                                        box-sizing: border-box !important;
-                                    }
-
-                                    #vi-confirmation-form .sd-boolean__item input[type="radio"],
-                                    #vi-confirmation-form .sd-boolean__item input[type="checkbox"],
-                                    #vi-confirmation-form .sd-boolean__switch {
-                                        display: none !important;
-                                    }
-
-                                    #vi-confirmation-form .sd-boolean__label {
-                                        display: inline-block !important;
-                                        margin: 0 !important;
-                                        font-weight: 600 !important;
-                                        color: #222 !important;
-                                        white-space: nowrap !important;
-                                    }
-
-                                    /* active state */
-                                    #vi-confirmation-form .sd-item--checked .sd-boolean__item {
-                                        border-color: #bd945a !important;
-                                        background: #fff !important;
-                                        color: #bd945a !important;
-                                    }
-
-                                    #vi-confirmation-form .sd-item--checked .sd-boolean__label {
-                                        color: #bd945a !important;
-                                    }
-                                }
-
-                                .sd-input::-webkit-input-placeholder {
-                                    font-style: italic;
-                                }
-
-                                .sd-input:-moz-placeholder {
-                                    font-style: italic;
-                                }
-
-                                .sd-input::-moz-placeholder {
-                                    font-style: italic;
-                                }
-
-                                .sd-input:-ms-input-placeholder {
-                                    font-style: italic;
-                                }
-
-                                .sd-root-modern {
-                                    background-color: unset;
-                                }
-
-                                .sd-element--with-frame {
-                                    padding-left: 0;
-                                    padding-right: 0;
-                                    padding-top: 1em !important;
-                                    padding-bottom: 1em !important;
-                                    box-shadow: unset;
-                                    letter-spacing: 0 !important;
-                                }
-
-                                .sd-error {
-                                    box-sizing: border-box !important;
-                                    margin-left: 0 !important;
-                                    margin-right: 0 !important;
-                                    border-radius: 0 !important;
-                                    max-width: 440px !important;
-                                }
-
-                                .sd-btn {
-                                    background-color: rgba(251, 249, 248, 1) !important;
-                                    font-family: 'nunito sans', sans-serif !important;
-                                    font-weight: 400;
-                                    font-size: 18px !important;
-                                    text-transform: uppercase;
-                                    padding: 13px !important;
-                                    color: white !important;
-                                    letter-spacing: 0 !important;
-
-                                    background-color: rgb(189, 148, 90) !important;
-                                    border-color: white !important;
-                                    border-radius: 3px !important;
-                                    font-weight: bold !important;
-                                    width: 100% !important;
-                                    display: block !important;
-                                }
-
-                                .sd-action-bar {
-                                    width: 100% !important;
-                                    display: block !important;
-                                }
-
-                                .sd-btn:hover {
-                                    border-color: rgb(189, 148, 90) !important;
-                                    background-color: rgb(189, 148, 90, 0.7) !important;
-                                }
-
-                                .sd-action-bar {
-                                    width: 100% !important;
-                                    display: block !important;
-                                }
-
-
-                                textarea {
-                                    font-family: 'Cormorant Garamond', serif !important;
-                                    font-weight: 400;
-                                    font-size: 1rem !important;
-                                }
-
-                                fieldset {
-                                    display: flex !important;
-                                    flex-wrap: wrap !important;
-                                    gap: 0px !important;
-                                    align-items: flex-start !important;
-                                    flex-direction: column !important;
-                                }
-
-                                .sv-title-actions {
-                                    display: flex !important;
-                                    flex-wrap: wrap !important;
-                                    justify-content: center !important;
-                                }
-
-                                .sd-item--checked .sd-item__decorator {
-                                    background: rgb(189, 148, 90) !important;
-                                }
-
-                                .sd-boolean-root {
-                                    margin: 0 auto !important;
-                                    text-align: center !important;
-                                }
-
-                                /* Keep switch and label on same line with proper spacing */
-                                .sd-boolean__item {
-                                    display: inline-flex !important;
-                                    align-items: center !important;
-                                    gap: 8px !important;
-                                    margin: 6px 12px !important;
-                                }
-
-                                div.sd-element__content.sd-question__content>div>label>div.sd-boolean__switch>span {
-                                    border: 2px solid rgb(189, 148, 90);
-                                }
-
-                                .vi-confirmation-form input {
-                                    font-size: 14px !important;
-                                    color: #333 !important;
-                                    padding: 20px;
-                                }
-
-                                /* Fix: render SurveyJS dropdowns inside dialog as compact lists
-                                   instead of full-screen popups (applies when served via HTTP).
-                                   Use `position: fixed` and do NOT override `top/left` so JS can
-                                   position the popup correctly. */
-                                .dialog-box .sv-popup,
-                                #vi-confirmation-form .sv-popup,
-                                #vi-confirmation-form .sv-popup--dropdown {
-                                    position: fixed !important;
-                                    width: auto !important;
-                                    max-width: 420px !important;
-                                    height: auto !important;
-                                    max-height: 50vh !important;
-                                    z-index: 10050 !important;
-                                }
-
-                                #vi-confirmation-form .sv-popup__container {
-                                    margin: 0 !important;
-                                    box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
-                                    border-radius: 6px !important;
-                                }
-
-                                #vi-confirmation-form .sv-popup__body-content {
-                                    max-height: 300px !important;
-                                    overflow: auto !important;
-                                }
-
-                                #vi-confirmation-form .sv-dropdown-popup {
-                                    height: auto !important;
-                                }
-
-                                /* Ensure the form inside dialog allows popups to overflow */
-                                .dialog-box-inside .sd-root-modern {
-                                    overflow: visible !important;
-                                }
-
-                                .dialog-box-inside .sd-body {
-                                    overflow: visible !important;
-                                }
-
-                                .dialog-box-inside .sv-q_dropdown_control {
-                                    overflow: visible !important;
-                                    position: relative;
-                                    z-index: 1;
-                                }
-
-                                #vi-confirmation-form {
-                                    overflow: visible !important;
-                                }
-
-                                #vi-confirmation-form .sv-popup {
-                                    position: fixed !important;
-                                    z-index: 10050 !important;
-                                }
-                            </style>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="footer2">
                 <div style="text-align:center; padding:20px; font-size:14px;">

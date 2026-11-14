@@ -77,7 +77,6 @@ const EventParamsDefault = {
 
     "eventGuid": "b19ec654-2383-4f82-bea2-4f2ea0466dfe",
 
-    "enableConfirmations": false,
     "isLocked" : false,
     "isDemo": false,
 
